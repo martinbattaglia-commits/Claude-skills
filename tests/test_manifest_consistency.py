@@ -217,9 +217,12 @@ def test_orchestrator_sub_skills_list_matches_disk():
         if d.is_dir() and (d / "SKILL.md").is_file()
     }
     # The orchestrator (`seo`) does not list itself.
+    # Non-SEO bundled skills (e.g. cyber-neo, a standalone security auditor) are
+    # not part of the SEO orchestrator's Sub-Skills routing table, so only
+    # `seo-`prefixed skills are expected in the list.
     # seo-firecrawl is documented separately in an Optional Extensions subsection
     # because it lives only in extensions/, not in skills/.
-    expected = on_disk - {"seo"}
+    expected = {name for name in on_disk if name.startswith("seo-")}
     assert listed == expected, (
         f"Sub-Skills list != skills/ dir. "
         f"Missing from list: {sorted(expected - listed)}. "
@@ -277,7 +280,7 @@ def test_skill_metadata_versions_match_plugin_json():
     """
     # Community-contributed skills that maintain their own version cadence.
     # Each entry: skill name -> expected literal version string.
-    COMMUNITY_OVERRIDES = {"seo-content-brief": "1.0.0"}
+    COMMUNITY_OVERRIDES = {"seo-content-brief": "1.0.0", "cyber-neo": "0.1.0"}
 
     plugin = json.loads(PLUGIN_JSON.read_text())
     expected_default = plugin["version"]
@@ -374,7 +377,7 @@ def test_canonical_math_adds_up():
     )
     headline = int(headline_match.group(1))
     breakdown = headline_match.group(2)
-    parts = [int(n) for n in re.findall(r"(\d+)\s+(?:core|orchestrator|framework|extension)", breakdown)]
+    parts = [int(n) for n in re.findall(r"(\d+)\s+(?:core|orchestrator|framework|extension|security)", breakdown)]
     assert sum(parts) == headline, (
         f"plugin.json canonical phrasing breakdown {breakdown!r} sums to "
         f"{sum(parts)} but headline claims {headline}. Math must add up."

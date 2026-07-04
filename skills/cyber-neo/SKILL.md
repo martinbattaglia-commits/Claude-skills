@@ -27,6 +27,12 @@ allowed-tools:
   - Bash(which *)
   - Bash(wc *)
   - Bash(find *)
+license: MIT
+metadata:
+  author: mhenry
+  original_author: mhenry
+  version: "0.1.0"
+  category: security
 ---
 
 # Cyber Neo — Cybersecurity Analysis Agent

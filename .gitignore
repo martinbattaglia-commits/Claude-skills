@@ -109,7 +109,12 @@ Google-SEO-Report-*.html
 Google-SEO-Report-*.pdf
 
 # Claude Code local config (project-specific permissions, not for repo)
-.claude/
+# Ignore local config, but track the vendored marketing-skills install below.
+.claude/*
+!.claude/skills/
+!.claude/tools/
+!.claude/MARKETING-SKILLS.md
+!.claude/LICENSE-marketing-skills
 .superpowers/
 
 # Site-specific analysis outputs

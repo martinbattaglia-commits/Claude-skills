@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="480" font-family="Helvetica, Arial, sans-serif">
+  <rect width="820" height="480" fill="#ffffff"/>
+  <text x="44" y="46" font-size="22" font-weight="700" fill="#0a0a0b">TISCOMS — NAV performance</text>
+  <text x="44" y="70" font-size="13" fill="#7e828a">Net asset value per unit (THB) · since inception</text>
+
+  <!-- y gridlines + labels -->
+  <line x1="80" y1="80"  x2="760" y2="80"  stroke="#eef0f3"/>
+  <line x1="80" y1="166" x2="760" y2="166" stroke="#eef0f3"/>
+  <line x1="80" y1="252" x2="760" y2="252" stroke="#eef0f3"/>
+  <line x1="80" y1="338" x2="760" y2="338" stroke="#eef0f3"/>
+  <line x1="80" y1="380" x2="760" y2="380" stroke="#c8ccd2"/>
+  <text x="70" y="84"  font-size="11" fill="#a8acb2" text-anchor="end">13</text>
+  <text x="70" y="170" font-size="11" fill="#a8acb2" text-anchor="end">11</text>
+  <text x="70" y="256" font-size="11" fill="#a8acb2" text-anchor="end">9</text>
+  <text x="70" y="342" font-size="11" fill="#a8acb2" text-anchor="end">7</text>
+
+  <!-- x labels -->
+  <text x="80"  y="400" font-size="12" fill="#7e828a" text-anchor="middle">2021</text>
+  <text x="216" y="400" font-size="12" fill="#7e828a" text-anchor="middle">2022</text>
+  <text x="352" y="400" font-size="12" fill="#7e828a" text-anchor="middle">2023</text>
+  <text x="488" y="400" font-size="12" fill="#7e828a" text-anchor="middle">2024</text>
+  <text x="624" y="400" font-size="12" fill="#7e828a" text-anchor="middle">2025</text>
+  <text x="760" y="400" font-size="12" fill="#7e828a" text-anchor="middle">2026</text>
+
+  <!-- the NAV line: rises to a 2024 peak, then declines -->
+  <polyline points="80,352 216,320 352,290 488,101 624,166 760,204" fill="none" stroke="#10a86b" stroke-width="3"/>
+  <circle cx="488" cy="101" r="4" fill="#10a86b"/>
+  <text x="488" y="92" font-size="12" font-weight="700" fill="#0a0a0b" text-anchor="middle">peak 12.50</text>
+  <circle cx="760" cy="204" r="4" fill="#10a86b"/>
+
+  <!-- printed return stats -->
+  <rect x="44" y="424" width="732" height="36" rx="8" fill="#f4f5f7"/>
+  <text x="64"  y="447" font-size="14" fill="#0a0a0b">1Y <tspan font-weight="700" fill="#d14545">-8.2%</tspan></text>
+  <text x="230" y="447" font-size="14" fill="#0a0a0b">3Y <tspan font-weight="700" fill="#10a86b">+24.5%</tspan></text>
+  <text x="410" y="447" font-size="14" fill="#0a0a0b">Since inception <tspan font-weight="700" fill="#10a86b">+52.0%</tspan></text>
+</svg>

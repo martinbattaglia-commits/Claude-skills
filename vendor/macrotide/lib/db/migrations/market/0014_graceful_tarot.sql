@@ -1,0 +1,1 @@
+CREATE INDEX `idx_nav_history_aum` ON `nav_history` (`ticker`,`date`) WHERE "nav_history"."net_asset" IS NOT NULL;

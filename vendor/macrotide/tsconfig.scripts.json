@@ -1,0 +1,22 @@
+// tsconfig for standalone `tsx` scripts (npm run jobs:*, etc.).
+//
+// Why this exists: app modules guard themselves with `import "server-only"`,
+// a package Next's bundler provides but plain Node/tsx cannot resolve. Scripts
+// that import the app's db/query layer (e.g. scripts/close-stale-sessions.ts)
+// therefore crash with "Cannot find module 'server-only'" under tsx.
+//
+// We alias `server-only` to the existing no-op test shim ONLY for script runs,
+// via `tsx --tsconfig tsconfig.scripts.json`. This keeps the alias out of the
+// app's tsconfig.json so the real `server-only` client-import protection stays
+// intact in the Next build. (`paths` does not merge through `extends`, so the
+// `@/*` mapping is repeated here.)
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"],
+      "@macrotide/connector-sdk": ["./packages/connector-sdk/src/index.ts"],
+      "server-only": ["./tests/shims/server-only.ts"]
+    }
+  }
+}

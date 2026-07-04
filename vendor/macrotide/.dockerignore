@@ -1,0 +1,22 @@
+# Keep secrets and host-only state out of the build context (Docker uses this,
+# NOT .gitignore). .env*.local must never be baked into an image layer — secrets
+# are injected at runtime via compose `env_file`.
+.env
+.env*.local
+.git
+.github
+node_modules
+.next
+data
+*.log
+.DS_Store
+.playwright-cli
+coverage
+# Mirror .gitignore: keep private/host-only files out of image layers too. The
+# real broker connector manifests arrive via a runtime read-only volume mount,
+# not the image; tmp/ + eval-results/ are local scratch; .claude is agent config.
+.connectors/*.json
+!.connectors/example.json
+tmp
+eval-results
+.claude

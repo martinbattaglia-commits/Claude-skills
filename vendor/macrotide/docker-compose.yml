@@ -1,0 +1,52 @@
+# Macrotide — single-owner self-host (Mode B), containerized.
+#
+# Exposure model: bind to host loopback only. A reverse proxy in front
+# terminates TLS and routes the public hostname here. On the reference host
+# (Oracle) that proxy is a Cloudflare Tunnel (cloudflared) → no inbound ports
+# are opened on the box. See docs/how-to/deploy.md § "Docker + Cloudflare Tunnel".
+#
+# Secrets come from .env.local at runtime (chmod 600, gitignored, never baked
+# into the image). Port 3100 on the host avoids the 3000 already in use on the
+# reference box.
+
+name: macrotide
+
+services:
+  macrotide:
+    build: .
+    container_name: macrotide
+    restart: unless-stopped
+    env_file: .env.local
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # Split DBs: app.db (system of record, backed up) + market.db (regenerable).
+      - DB_PATH=/app/data/app.db
+      - MARKET_DB_PATH=/app/data/market.db
+    ports:
+      - "127.0.0.1:3100:3000"
+    volumes:
+      # Both SQLite files + app.db's daily backups. Bind mount so the host's
+      # restic backup picks them up (mirrors the searxng/agent service
+      # convention). The same ./data volume holds app.db and market.db.
+      - ./data:/app/data
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/login').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          # The Next.js server alone can spike past 1 GiB (observed a 2.1 GiB
+          # next-server OOM-kill under load); the nightly catalog crawl runs as a
+          # second process in this same cgroup. 3 GiB gives both headroom while
+          # still capping a runaway. Lower to fit a smaller host.
+          memory: 3072M

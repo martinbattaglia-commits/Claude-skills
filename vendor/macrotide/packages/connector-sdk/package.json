@@ -1,0 +1,15 @@
+{
+  "name": "@macrotide/connector-sdk",
+  "version": "0.1.0",
+  "description": "Broker-agnostic contract + generic, config-driven collector/parser for Macrotide broker-import connectors. A connector is DATA (a manifest); this SDK turns it into an install-ready userscript and parses the broker's export into Macrotide's import format.",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "sideEffects": false,
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,5156 @@
+:root {
+  /* Type */
+  /* Family names come from next/font variables set on <html> (app/layout.tsx);
+     literal names stay as fallbacks for environments without the variables. */
+  --font-sans:
+    var(--font-geist, "Geist"), -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    var(--font-plex-thai, "IBM Plex Sans Thai"), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, "SF Mono", monospace;
+
+  /* Light tokens (default) */
+  --bg: #f8f8f9;
+  --paper: #ffffff;
+  /* Scroll-edge cues. One token per role so components never branch on theme;
+     the token's VALUE flips with the theme. In light a soft shadow reads on a
+     light surface; in dark a dark shadow vanishes (dark-on-dark), so dark uses
+     a light hairline/tint instead.
+     --footer-scroll-shadow box-shadow for .modal-footer--scrolled */
+  --footer-scroll-shadow:
+    0 -10px 24px -10px rgba(10, 10, 11, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --footer-scrolled-bg: color-mix(in srgb, #000 4%, var(--paper));
+  --card-soft: #f1f2f4;
+  --ink: #0a0a0b;
+  --ink-soft: #3a3d43;
+  --muted: #7e828a;
+  --muted-2: #a8acb2;
+  --line: #e6e7ea;
+  --line-soft: #eff0f2;
+
+  --accent: #10a86b;
+  --benchmark: #7c7cff;
+  --accent-ink: #076339;
+  --accent-soft: #e3f6ec;
+  --accent-2: #0aa694;
+  --accent-2-soft: #dcf1ed;
+  --accent-2-ink: #086459;
+  --gain: #10a86b;
+  --loss: #d14545;
+  --amber: #d89a1f;
+  --info: #4c7ac9;
+
+  --chip-bg: #f1f2f4;
+  --chip-active-bg: #ffffff;
+  --chip-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+  --shadow-sm: 0 1px 2px rgba(10, 10, 11, 0.04);
+  --shadow-md: 0 4px 24px -8px rgba(10, 10, 11, 0.08), 0 1px 2px rgba(10, 10, 11, 0.04);
+  --shadow-lg: 0 24px 48px -16px rgba(10, 10, 11, 0.16), 0 2px 4px rgba(10, 10, 11, 0.04);
+
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 18px;
+  --r-2xl: 22px;
+  --r-full: 999px;
+
+  --pad-card: 16px;
+  --gap: 12px;
+
+  color-scheme: light;
+}
+
+/* Explicit dark */
+:root[data-theme="dark"] {
+  --bg: #0c0d0f;
+  --paper: #16181b;
+  --footer-scroll-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  --footer-scrolled-bg: color-mix(in srgb, #fff 5%, var(--paper));
+  --card-soft: #101215;
+  --ink: #f4f5f7;
+  --ink-soft: #c5c8cd;
+  --muted: #7a7f87;
+  --muted-2: #595d63;
+  --line: #22252a;
+  --line-soft: #1b1e22;
+
+  --accent: #19c37d;
+  --accent-ink: #19c37d;
+  --accent-soft: rgba(25, 195, 125, 0.14);
+  --accent-2: #14c9af;
+  --accent-2-soft: rgba(20, 201, 175, 0.14);
+  --accent-2-ink: #14c9af;
+  --gain: #19c37d;
+  --loss: #f46a6a;
+  --amber: #e4b440;
+  --info: #6e96e6;
+
+  --chip-bg: #1b1e22;
+  --chip-active-bg: #262a30;
+  --chip-shadow: none;
+
+  --shadow-sm: none;
+  --shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
+
+  color-scheme: dark;
+}
+
+/* System mode follows prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] {
+    --bg: #0c0d0f;
+    --paper: #16181b;
+    --footer-scroll-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    --footer-scrolled-bg: color-mix(in srgb, #fff 5%, var(--paper));
+    --card-soft: #101215;
+    --ink: #f4f5f7;
+    --ink-soft: #c5c8cd;
+    --muted: #7a7f87;
+    --muted-2: #595d63;
+    --line: #22252a;
+    --line-soft: #1b1e22;
+
+    --accent: #19c37d;
+    --accent-ink: #19c37d;
+    --accent-soft: rgba(25, 195, 125, 0.14);
+    --accent-2: #14c9af;
+    --accent-2-soft: rgba(20, 201, 175, 0.14);
+    --accent-2-ink: #14c9af;
+    --gain: #19c37d;
+    --loss: #f46a6a;
+    --amber: #e4b440;
+    --info: #6e96e6;
+
+    --chip-bg: #1b1e22;
+    --chip-active-bg: #262a30;
+    --chip-shadow: none;
+
+    --shadow-sm: none;
+    --shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
+
+    color-scheme: dark;
+  }
+}
+
+[data-density="compact"] {
+  --pad-card: 12px;
+  --gap: 9px;
+}
+
+* {
+  box-sizing: border-box;
+  /* Kill the blue/grey flash mobile browsers paint over tapped elements
+     (links, buttons). We have our own :active / :hover states. */
+  -webkit-tap-highlight-color: transparent;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* Kill the elastic / rubber-band scroll at the document level — a fixed
+     overlay panel decouples from the page when the page bounces, which
+     looks like the panel is "floating" out of place. */
+  overscroll-behavior: none;
+}
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  font-feature-settings: "ss01";
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.45;
+}
+html {
+  background: var(--bg);
+}
+/* Bold emphasis at the app's 600, not the browser default (700). Scoped
+   `strong` rules keep their own weight by specificity. */
+strong {
+  font-weight: 600;
+}
+
+/* ===== App shell =====
+   --demo-banner-h is read by every full-viewport container (.app-frame,
+   .ra-shell, .ra-main, the rails, and the chat screen) so they subtract the
+   sticky DemoBanner's height and the page doesn't gain a phantom scroll
+   when demo mode is active. The DemoBanner component measures itself at
+   runtime and writes the actual rendered px to this variable on body. */
+:root {
+  --demo-banner-h: 0px;
+  /* Sticky topbar height. The sub-tab / portfolio-switch bars stick directly
+     below the topbar, so their `top` is derived from this value (minus a 2px
+     overlap that the topbar's higher z-index hides). Keeping both in one
+     variable means the two sticky bars can never drift apart and open a
+     see-through gap. Base = mobile/app-frame; .ra-main overrides for the
+     taller desktop topbar (extra padding-top). */
+  --topbar-h: 50px;
+}
+.app-root {
+  /* `dvh` (dynamic viewport), not `vh`: on iOS `100vh` is the LARGE viewport and
+     resolves ~32px taller than the actually-visible area (window.innerHeight),
+     so a `100vh` shell over-scrolls by that gap. `100dvh` tracks the visible
+     viewport and matches innerHeight. */
+  min-height: calc(100dvh - var(--demo-banner-h));
+  display: flex;
+  justify-content: center;
+  background: var(--bg);
+}
+.app-frame {
+  width: 100%;
+  min-height: calc(100dvh - var(--demo-banner-h));
+  background: var(--bg);
+  position: relative;
+  /* Reserve the fixed bottom nav (96px) plus the home-indicator inset so the
+     last row of content clears both. env() is 0 where there's no inset. */
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  border-left: 1px solid var(--line-soft);
+  border-right: 1px solid var(--line-soft);
+}
+
+/* Mouse/fine-pointer mobile shell: a bounded scroll container that
+   OverlayScrollbars takes over (see App.tsx), so a narrow desktop window shows
+   the thin overlay thumb instead of the chunky native lane. Only rendered for a
+   fine pointer; touch keeps the native document scroll (no .app-scroll). The
+   fixed .bottom-nav is a sibling OUTSIDE this container, so it still positions
+   against the window; the padding-bottom (moved off .app-frame for this branch)
+   keeps the last content row clear of the floating pill. */
+.app-scroll {
+  height: calc(100dvh - var(--demo-banner-h));
+  overflow-y: auto;
+  overscroll-behavior: none;
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+}
+/* Don't double the bottom reservation: the scroller already carries it. */
+.app-frame:has(> .app-scroll) {
+  padding-bottom: 0;
+}
+/* Sticky descendants now pin to the scroller's top, not the window's. The demo
+   banner sits OUTSIDE .app-scroll (sibling above .app-root), so — like .ra-main
+   — the topbar uses top: 0 and the sub-tab bars derive from --topbar-h, with no
+   banner offset (that would double up). */
+.app-scroll .topbar {
+  top: 0;
+}
+.app-scroll .sub-tabs,
+.app-scroll .portfolio-switch {
+  top: calc(var(--topbar-h) - 2px);
+}
+
+/* Top bar */
+.topbar {
+  position: sticky;
+  /* Sticks just below the demo banner when present, else flush to viewport top. */
+  top: var(--demo-banner-h, 0px);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px 8px;
+  /* Pin the height to --topbar-h so the sub-tab / portfolio-switch bars
+     (which stick at `--topbar-h - 2px`) line up exactly under it. Content
+     fits within (14+23ish+8 = ~45–50px), but rounding varies by viewport so
+     a fixed height guarantees a consistent stack offset with no gap. Use
+     `height` (not just min-height) so a tall brand line can't push the bar
+     past --topbar-h and reopen the gap the sub-tabs were measured against. */
+  min-height: var(--topbar-h);
+  height: var(--topbar-h);
+  /* Solid background so content scrolling under the sticky bar is fully
+     hidden. Previously this used a linear-gradient that faded to transparent
+     in the bottom 20%, which showed scrolling content through the bar. */
+  background: var(--bg);
+  transition: transform 220ms ease;
+  will-change: transform;
+}
+
+/* Scroll-direction-aware hide. `useScrollHide` toggles
+   [data-topbar-hidden] on <body> when scrolling down past ~60px; CSS slides
+   the topbar up and pulls sub-tabs/portfolio-switch up to fill the space.
+   Both elements use `transform` (compositor-driven, GPU-accelerated) so
+   their motion stays in lockstep — transitioning `top` on sticky elements
+   snaps instead of interpolating and creates a visible gap during hide.
+   Without JS or with prefers-reduced-motion, the attribute is never set
+   and the layout stays in its base sticky state. */
+body[data-topbar-hidden="true"] .topbar {
+  transform: translateY(-100%);
+}
+.sub-tabs,
+.portfolio-switch {
+  transition: transform 220ms ease;
+}
+body[data-topbar-hidden="true"] .sub-tabs,
+body[data-topbar-hidden="true"] .portfolio-switch {
+  /* Move up by the topbar's own height (--topbar-h: 50px mobile / 54px
+     desktop) so the bar slides up flush with the banner bottom and stays
+     touching the rising topbar. */
+  transform: translateY(calc(-1 * var(--topbar-h)));
+}
+@media (prefers-reduced-motion: reduce) {
+  .topbar,
+  .sub-tabs,
+  .portfolio-switch {
+    transition: none;
+  }
+}
+.topbar > div:first-child {
+  min-width: 0;
+  flex: 1;
+}
+.topbar > div:first-child > div:nth-child(2) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar .brand {
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.topbar .brand-chip {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--card-soft);
+  border: 1px solid var(--line-soft);
+  flex-shrink: 0;
+}
+/* Base icon-only button — used in topbars, panel headers, sheet titles, etc. */
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink-soft);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition:
+    background 0.12s,
+    border-color 0.12s,
+    color 0.12s;
+}
+.icon-btn:hover {
+  background: var(--card-soft);
+  color: var(--ink);
+}
+.icon-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Quiet variant: borderless, no fill, muted — recedes in a list (e.g. per-row edit). */
+.icon-btn.quiet {
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+}
+.icon-btn.quiet:hover {
+  background: transparent;
+  color: var(--ink);
+}
+/* Labeled sibling of .icon-btn: same height / corner / fill / border / hover,
+   but inline-sized to fit a short label (+ optional leading icon). Lets a
+   "New chat" control sit in a header next to icon-only .icon-btn buttons (the
+   hamburger, the kebab) and read as one consistent set. */
+.chip-btn {
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 10px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 0.12s,
+    border-color 0.12s,
+    color 0.12s;
+}
+.chip-btn:hover {
+  background: var(--card-soft);
+  color: var(--ink);
+}
+.chip-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.chip-btn:disabled,
+.chip-btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+/* Footer icon actions (e.g. the destructive trash) size up to match the 40px
+   footer button row so the row reads as one consistent height. */
+.modal-footer .icon-btn {
+  width: 40px;
+  height: 40px;
+}
+/* Footer Delete: icon-only square on the mobile bottom-sheet (the .icon-btn
+   above); expands to icon + "Delete" label on desktop/tablet where there's room. */
+.btn-delete .btn-delete-label {
+  display: none;
+}
+@media (min-width: 600px) {
+  .modal-footer .btn-delete {
+    width: auto;
+    padding: 0 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-delete .btn-delete-label {
+    display: inline;
+  }
+}
+.topbar .avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--card-soft);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* Bottom nav — iOS Liquid Glass: light material on light bg, dark material on dark bg */
+.bottom-nav {
+  position: fixed;
+  /* Float above the home indicator on devices that have one; stays at 18px
+     where there's no inset (env() resolves to 0). */
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  /* Near-opaque: a hint of glass without scrolling content (e.g. the Markets
+     news list) reading through the bar. */
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 999px;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  box-shadow:
+    0 12px 32px -8px rgba(10, 10, 11, 0.18),
+    0 2px 6px rgba(10, 10, 11, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  z-index: 40;
+  border: 1px solid rgba(10, 10, 11, 0.06);
+  /* Deterministic width: span the viewport minus gutters, capped at a tidy pill
+     on larger phones. Equal-flex buttons (below) then divide this evenly — no
+     shrink-to-fit collapse, no overflow on narrow phones. */
+  box-sizing: border-box;
+  width: calc(100vw - 28px);
+  max-width: 440px;
+}
+
+[data-theme="dark"] .bottom-nav {
+  background: rgba(28, 30, 34, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 12px 32px -8px rgba(0, 0, 0, 0.5),
+    0 2px 6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] .bottom-nav {
+    background: rgba(28, 30, 34, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 12px 32px -8px rgba(0, 0, 0, 0.5),
+      0 2px 6px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+}
+
+.bottom-nav button {
+  background: transparent;
+  border: 0;
+  color: rgba(10, 10, 11, 0.58);
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  padding: 7px 0 6px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  transition: all 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
+  position: relative;
+  /* Equal-flex items that divide the bar evenly — the platform standard (iOS
+     UITabBar, Material 3 Navigation Bar). flex-basis:0 so every tab is the same
+     width regardless of label length; the bar itself is width-capped above. */
+  width: auto;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+[data-theme="dark"] .bottom-nav button {
+  color: rgba(255, 255, 255, 0.62);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] .bottom-nav button {
+    color: rgba(255, 255, 255, 0.62);
+  }
+}
+
+.bottom-nav button:hover:not([data-active="true"]) {
+  color: rgba(10, 10, 11, 0.85);
+}
+[data-theme="dark"] .bottom-nav button:hover:not([data-active="true"]) {
+  color: rgba(255, 255, 255, 0.9);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] .bottom-nav button:hover:not([data-active="true"]) {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.bottom-nav button[data-active="true"] {
+  background: rgba(255, 255, 255, 0.92);
+  color: rgba(10, 10, 11, 0.95);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(10, 10, 11, 0.06);
+}
+[data-theme="dark"] .bottom-nav button[data-active="true"] {
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] .bottom-nav button[data-active="true"] {
+    background: rgba(255, 255, 255, 0.16);
+    color: white;
+  }
+}
+
+.bottom-nav button:active {
+  transform: scale(0.96);
+}
+
+.bottom-nav button svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  transition: transform 0.22s;
+}
+
+.bottom-nav button[data-active="true"] svg {
+  transform: scale(1.06);
+}
+
+/* Tab labels stay visible at all sizes — fixed-width per iOS HIG */
+
+/* Segmented sub-tabs (used inside Markets, Journal) */
+.sub-tabs {
+  display: flex;
+  gap: 4px;
+  /* Symmetric padding (8 top / 8 bottom) — buttons sit centered in the bar
+     with breathing room above and below. */
+  padding: 8px 16px;
+  scroll-padding-right: 16px;
+  margin-bottom: 8px;
+  /* Negative margin-top so natural rest position matches sticky top: no
+     2px jump between scrollTop=0 and scrollTop>=2 when sticky engages. */
+  margin-top: -2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky;
+  /* `--topbar-h - 2px` creates a 2px overlap with the topbar's bottom edge.
+     Topbar has higher z-index so the overlap is hidden at rest, and deriving
+     from the shared var means the two bars can never drift apart. */
+  top: calc(var(--topbar-h) - 2px + var(--demo-banner-h, 0px));
+  z-index: 20;
+  background: var(--bg);
+}
+.sub-tabs::-webkit-scrollbar {
+  display: none;
+}
+.sub-tabs button {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--r-full);
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+.sub-tabs button[data-active="true"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+.sub-tabs button:hover:not([data-active="true"]) {
+  color: var(--ink-soft);
+}
+
+/* Per-turn action toolbar at the foot of a finished Advisor reply — Copy ·
+   Regenerate · Save, muted glyph buttons that brighten on hover (Claude/ChatGPT
+   style). On touch (no hover) they stay quietly visible. */
+.msg-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 10px;
+}
+.msg-action {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  opacity: 0.5;
+  cursor: pointer;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px;
+  transition:
+    opacity 0.15s ease,
+    color 0.15s ease;
+}
+.msg-action:hover {
+  opacity: 1;
+  color: var(--ink);
+}
+.msg-action:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+/* SaveNoteButton shares the toolbar row — drop its standalone top margin and
+   match the action padding so the glyphs align. */
+.msg-actions .msg-save {
+  margin-top: 0;
+  padding: 4px;
+}
+/* Quiet per-message "save to notes" — a muted bookmark glyph that brightens on
+   hover (no background box, no label). Lives at the foot
+   of the Advisor bubble; small top margin separates it from the reply text. No
+   left padding so the glyph aligns with the text paragraph. */
+.msg-save {
+  margin-top: 10px;
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  opacity: 0.5;
+  cursor: pointer;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 4px 3px 0;
+  transition:
+    opacity 0.15s ease,
+    color 0.15s ease;
+}
+.msg-save:hover {
+  opacity: 1;
+  color: var(--ink);
+}
+.msg-save[data-active="true"] {
+  opacity: 1;
+  color: var(--accent);
+}
+.msg-save:disabled {
+  cursor: default;
+}
+
+/* Memory-write notice under an Advisor reply — a quiet grey status line
+   (no chip/border/icon) that expands on click to reveal
+   what changed + a "View in Memory" link. See ChatScreen MemoryEventLine. */
+.memory-event {
+  font-size: 11.5px;
+  color: var(--muted);
+  /* Interleaved between prose parts under one header — a little vertical room
+     so the chip reads as a distinct step, not glued to the surrounding text. */
+  margin: 8px 0;
+}
+/* Stacked reply parts under one header: separate consecutive prose blocks so an
+   interleaved (or multi-segment) turn reads as distinct steps, not one glued
+   wall of text. The chip carries its own margin (above). */
+.msg.ai > .md + .md {
+  margin-top: 0.6em;
+}
+.memory-event .me-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: transparent;
+  border: 0;
+  padding: 2px 0;
+  color: var(--muted);
+  /* Match the chat text typeface/size — a <button> otherwise renders in the UA
+     default font, which read as a different face from the reply above it. */
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.memory-event .me-line:hover {
+  color: var(--ink-soft);
+}
+.memory-event .me-caret {
+  opacity: 0.7;
+  transition: transform 0.15s ease;
+}
+.memory-event[data-open] .me-caret {
+  transform: rotate(90deg);
+}
+.memory-event .me-detail {
+  margin: 2px 0 2px 2px;
+  padding-left: 8px;
+  border-left: 2px solid var(--line-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.memory-event .me-content {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.memory-event .me-manage {
+  align-self: flex-start;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.memory-event .me-manage:hover {
+  text-decoration: underline;
+}
+
+/* Dialog open/close animations, shared by the Modal primitive below. */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes dialogIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Section-heading utility (reused inside dialogs for sub-section labels). */
+.sheet-title {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+/* Unified sheet input styling so <input> and <textarea> match. Radius matches
+   the add-holdings symbol field (.manual-row input) for one input look app-wide. */
+.sheet-input {
+  width: 100%;
+  background: var(--card-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+.sheet-input::placeholder {
+  /* A placeholder is the FAINTEST text in the field — lighter than a disabled field's
+     muted value and far lighter than a real ink value, so an empty field reads clearly
+     as "type here", not as a value. */
+  color: var(--muted-2);
+  opacity: 1;
+}
+.sheet-input:focus,
+.sheet-input:focus-visible {
+  border-color: var(--accent);
+  background: var(--paper);
+}
+/* Three distinct field states. This form's EDITABLE fields are card-soft filled, so we
+   can't lean on the usual "grey = disabled" read (grey is already editable). A disabled
+   field therefore stays a filled field (NOT hollow — hollow reads as empty/placeholder)
+   with its value muted and a not-allowed cursor; the LOCK ICON by the label carries the
+   "can't edit this" meaning explicitly. Text hierarchy keeps the states apart: ink value
+   (editable) → muted value (disabled) → faintest placeholder (empty). */
+.sheet-input:disabled {
+  color: var(--muted);
+  cursor: not-allowed;
+  opacity: 1;
+}
+.sheet-input:disabled::placeholder {
+  /* A locked field shouldn't invite input with a "type here" hint. */
+  color: transparent;
+}
+textarea.sheet-input {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  padding: 12px 14px;
+  resize: vertical;
+  min-height: 60px;
+}
+/* Search-style inputs: strip browser default decorations (clear button etc.) */
+.sheet-input::-webkit-search-decoration,
+.sheet-input::-webkit-search-cancel-button,
+.sheet-input::-webkit-search-results-button,
+.sheet-input::-webkit-search-results-decoration {
+  display: none;
+}
+
+/* Icon picker grid (Portfolio sheet). Fixed 6-column layout reads consistently
+   across mobile and desktop — same visual rhythm whether the dialog is 100vw
+   or 560px. */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+.icon-grid button {
+  /* Fixed-height cells (instead of 1:1 aspect-ratio) so wide dialogs don't
+     stretch cells tall and leave the icon floating in empty space. */
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--line-soft);
+  background: var(--paper);
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-color 0.12s,
+    background 0.12s,
+    color 0.12s;
+}
+.icon-grid button:hover {
+  border-color: var(--line);
+  background: var(--card-soft);
+}
+.icon-grid button[data-selected="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.icon-grid .icon-grid-empty {
+  grid-column: 1 / -1;
+  padding: 14px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+/* Add-holding row (manual) */
+.manual-row {
+  display: grid;
+  /* minmax(0, …) on the symbol track stops the long ticker value from forcing
+     it to min-content width and starving the numeric columns. */
+  grid-template-columns: minmax(0, 2fr) 1fr 1fr 28px;
+  gap: 6px;
+  margin-bottom: 6px;
+  align-items: center;
+}
+.manual-row input {
+  background: var(--card-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--ink);
+  outline: none;
+  min-width: 0;
+  /* The symbol input is nested in a relative wrapper (for the badge + dropdown),
+     so it isn't a grid item that auto-stretches — without this it renders at its
+     intrinsic ~20ch width and overflows the cell into the quantity column. */
+  width: 100%;
+}
+.manual-row input:focus {
+  border-color: var(--accent);
+}
+.manual-row button {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 6px;
+}
+/* In-input price-source badge, pinned to the symbol input's right edge. Higher
+   specificity than `.manual-row button` so it keeps its chip styling. Appears
+   once a symbol is entered; the symbol input reserves right padding for it. */
+.manual-row .type-badge,
+.combobox .type-badge {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  padding: 1px 5px;
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--muted);
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.manual-row .type-badge[data-overridden="true"],
+.combobox .type-badge[data-overridden="true"] {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+/* "Set all to:" — two bulk-action buttons (NOT a stateful toggle: the per-row
+   badges hold the state; these just apply a value to every row, and re-applying
+   the same value is valid, so neither button shows a "selected" state). */
+.source-seg {
+  display: inline-flex;
+  gap: 6px;
+}
+.source-seg button {
+  background: var(--card-soft);
+  border: 1px solid var(--line-soft);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.source-seg button:hover {
+  border-color: var(--accent);
+}
+/* Right-edge "there's more →" fade, shared by the symbol and units/total fields
+   (`.field-fade`). An overflowing value fades into the input's own background as
+   it nears the clip, cueing more text without dimming what fits. Painted after
+   the input but before the trailing badge in DOM, so the badge stays crisp.
+   Hidden by default; the field wrapper sets data-clip-end (via useClipEnd) only
+   while the value is clipped AND not scrolled to its end — so at the rightmost
+   caret it clears and the last character stays sharp. Both fields sit on --paper
+   inside the .rec-edit editor, and each reserves room for its own badge, so the
+   fade sits just left of it (symbol pad 42, units/total pad 52). */
+.field-fade {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  width: 16px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  background: linear-gradient(to right, transparent, var(--paper));
+}
+.combobox .field-fade {
+  right: 42px;
+}
+.qty-input .field-fade {
+  right: 52px;
+}
+.combobox[data-clip-end] .field-fade,
+.qty-input[data-clip-end] .field-fade {
+  opacity: 1;
+}
+/* Narrow phones: shrink the symbol column and floor the numeric columns so
+   "Quantity" / "Optional" always fit without clipping. */
+@media (max-width: 560px) {
+  .manual-row {
+    grid-template-columns: minmax(0, 1.4fr) minmax(66px, 1fr) minmax(66px, 1fr) 22px;
+    gap: 5px;
+  }
+}
+
+/* Transaction confirmation row (see AddTransactionsSheet). One CSS grid whose
+   cells are placed by class, so the SAME markup is a single line on wide screens
+   (desktop / landscape) and a stacked card on narrow ones — DOM order is fixed,
+   only the placement changes. Reuses the .manual-row input chrome. */
+.txn-row {
+  display: grid;
+  gap: 6px;
+  align-items: center;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  background: var(--card-soft);
+  /* Wide (default): date | type | symbol | units | price | fee | amount | remove. */
+  grid-template-columns:
+    124px 98px minmax(110px, 1.4fr) minmax(60px, 0.8fr) minmax(60px, 0.8fr)
+    minmax(56px, 0.7fr) minmax(82px, 1fr) 28px;
+}
+.txn-row input,
+.txn-row select {
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 7px 9px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--ink);
+  outline: none;
+  min-width: 0;
+  width: 100%;
+}
+.txn-row input:focus,
+.txn-row select:focus {
+  border-color: var(--accent);
+}
+.txn-row__remove {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 6px;
+  justify-self: center;
+  padding: 4px;
+}
+/* Stacked (narrow / portrait): a 12-col grid placed as
+   row1 date|type|remove · row2 symbol · row3 units|price · row4 fee|amount.
+   Grid placement ignores DOM order, so remove still reads top-right. */
+@media (max-width: 760px) {
+  .txn-row {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 5px;
+  }
+  .txn-c-date {
+    grid-area: 1 / 1 / 2 / 7;
+  }
+  .txn-c-type {
+    grid-area: 1 / 7 / 2 / 12;
+  }
+  .txn-c-remove {
+    grid-area: 1 / 12 / 2 / 13;
+  }
+  .txn-c-symbol {
+    grid-area: 2 / 1 / 3 / 13;
+  }
+  .txn-c-units {
+    grid-area: 3 / 1 / 4 / 7;
+  }
+  .txn-c-price {
+    grid-area: 3 / 7 / 4 / 13;
+  }
+  .txn-c-fee {
+    grid-area: 4 / 1 / 5 / 7;
+  }
+  .txn-c-amount {
+    grid-area: 4 / 7 / 5 / 13;
+  }
+}
+
+/* The inline ledger-row editor's card + action row. The field grid itself is
+   `.rec-edit` (shared with the Add sheet); these two just frame it. */
+.ledger-edit-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 8px;
+}
+.ledger-edit-card {
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 10px;
+  /* Symmetric breathing room so an expanded editor isn't flush against the row
+     above it (only spaced below). */
+  margin: 8px 0;
+  background: var(--card-soft);
+  /* Query container: the .rec-edit grid inside stacks based on THIS card's real
+     width, not the viewport — so it adapts to the sidebar / modal width without
+     hardcoded viewport breakpoints. */
+  container-type: inline-size;
+}
+
+/* Wider form modal for the transaction importer — its row needs ≥7 columns on
+   one line. `.modal.modal--txnwide` (specificity 0,2,0) so it beats the base
+   `.modal` max-width regardless of source order. Desktop/landscape only; mobile
+   stays the full-bleed bottom sheet. */
+@media (min-width: 600px) {
+  .modal.modal--txnwide {
+    max-width: 880px;
+  }
+  /* Fixed body floor ≥ the Investment default (paste box + a row) so BOTH families render
+     at the same height — toggling Investment|Cash doesn't jump the modal — and a short
+     Cash form still gives its Account/Label suggestion dropdown room (not clipped). (#149) */
+  .modal.modal--txnwide .modal-body {
+    min-height: 500px;
+  }
+}
+
+/* ─── Modal primitive ─────────────────────────────────────────────────────────
+   Standard dialog (components/Modal.tsx) — the one dialog class tree app-wide.
+   `.modal` is a flex column with a fixed max-height: header pinned on top, body
+   scrolls, footer pinned at the bottom. */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.32);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.2s ease-out;
+}
+[data-theme="dark"] .modal-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+/* Confirm stacks above form/detail modals (z 100) so it can be invoked from
+   inside an open modal. */
+.modal-overlay--confirm {
+  z-index: 200;
+}
+.modal {
+  width: 100%;
+  max-width: 560px;
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border-radius: 28px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+  animation: dialogIn 0.25s cubic-bezier(0.2, 0, 0, 1);
+  outline: none;
+  overflow: hidden; /* clip children to the rounded corners */
+}
+.modal--confirm {
+  max-width: 400px;
+}
+.modal--detail {
+  max-width: 640px;
+}
+
+/* Header — fixed; never scrolls. */
+.modal-header {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 24px 24px 12px;
+}
+.modal-header-text {
+  flex: 1;
+  min-width: 0;
+}
+.modal-title {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.modal-subtitle {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.modal-header-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.modal-close {
+  flex: 0 0 auto;
+  margin: -4px -4px 0 0;
+}
+/* Leading Back chevron — mirrors .modal-close: same -4px top pull (so it aligns
+   with the ✕) and the same -4px pull into its edge (so the left and right insets
+   from the modal edges match). */
+.modal-back {
+  flex: 0 0 auto;
+  margin: -4px 0 0 -4px;
+}
+
+/* Body — the ONLY scroll region. Padding is horizontal only; the header/footer
+   own the vertical breathing room so scrolled content meets the edges cleanly.
+   On the wide shell OverlayScrollbars floats its overlay thumb here (carves no
+   layout space); on mobile this is the native touch scroller. */
+.modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 24px;
+  overscroll-behavior: contain;
+}
+/* `detail` has no footer, so the body owns its own bottom breathing room
+   (form/confirm get it from the footer's bottom padding). */
+.modal--detail .modal-body {
+  padding-bottom: 24px;
+}
+/* 1px invisible IntersectionObserver target at the body's bottom edge. */
+.modal-body-sentinel {
+  height: 1px;
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Footer — pinned at the bottom; children auto right-aligned (no spacer hack).
+   `start` slot floats left for a destructive/tertiary action. */
+.modal-footer {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px 24px;
+  transition:
+    box-shadow 0.2s ease-out,
+    background 0.2s ease-out;
+}
+.modal-footer-start {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.modal-footer-end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+/* `modal-footer--stack`: on narrow screens, lay the footer out as full-width
+   rows (start-slot actions first, then the end action last) instead of a row. */
+@media (max-width: 480px) {
+  .modal-footer--stack {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .modal-footer--stack .modal-footer-start,
+  .modal-footer--stack .modal-footer-end {
+    flex-direction: column;
+    align-items: stretch;
+    margin-left: 0;
+  }
+  .modal-footer--stack .modal-footer-start > *,
+  .modal-footer--stack .modal-footer-end > * {
+    width: 100%;
+  }
+}
+/* Appear-on-scroll separator: a soft upward shadow + a hairline top highlight
+   (echoing the floating-pill treatment, e.g. .bottom-nav) once the body's
+   bottom sentinel scrolls out of view. No hairline divider, no backdrop-filter. */
+.modal-footer--scrolled {
+  background: var(--footer-scrolled-bg);
+  box-shadow: var(--footer-scroll-shadow);
+}
+
+/* Confirm message — the decision-critical "can't be undone" sentence. Larger
+   and near-full ink contrast than the muted form subtitle (the only deliberate
+   visual change in this migration). */
+.modal-confirm-message {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* Mobile: form + detail become full-bleed bottom-sheets with native scroll and
+   full-width footer buttons; confirm stays compact + centered. */
+@media (max-width: 599px) {
+  .modal-overlay--form,
+  .modal-overlay--detail {
+    align-items: stretch;
+    padding: 0;
+  }
+  .modal--form,
+  .modal--detail {
+    max-width: 100%;
+    max-height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+    animation: slideUp 0.22s ease-out;
+  }
+  /* Full-bleed bottom-sheet reaches the screen edge — the footerless detail
+     body must clear the home indicator (viewport-fit=cover is set). */
+  .modal--detail .modal-body {
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+  /* Footer keeps the desktop single-row layout on mobile: content-sized buttons
+     (start action left, Cancel + primary right via margin-auto). Buttons size to
+     their label so a longer one like "Save changes" never wraps — and the start
+     "Delete" stays compact instead of a full-width row. Just tighten the side
+     padding to match the mobile bottom-sheet. */
+  .modal-footer {
+    padding: 16px 18px 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay,
+  .modal {
+    animation: none;
+  }
+  .modal-footer {
+    transition: none;
+  }
+}
+
+/* Article cards (Learn) */
+.article-card {
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.article-card:hover {
+  border-color: var(--line);
+}
+.article-card .meta-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.article-card .a-title {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.article-card .a-blurb {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+/* Status pip */
+.status-pip {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.status-pip.read {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.status-pip.unread {
+  background: var(--card-soft);
+  color: var(--muted);
+  border: 1px solid var(--line-soft);
+}
+.status-pip.in_progress,
+.status-pip.in-progress {
+  background: color-mix(in oklab, var(--amber) 16%, transparent);
+  color: var(--amber);
+}
+.status-pip.ongoing {
+  background: var(--card-soft);
+  color: var(--ink-soft);
+}
+
+/* ===== Sections & cards ===== */
+.section {
+  padding: 0 16px;
+  margin-bottom: 14px;
+}
+.section.no-side-pad {
+  padding: 0 8px;
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+  padding: 0 4px;
+}
+.section-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.section-header .link {
+  font-size: 11px;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  font-weight: 400;
+}
+/* Strip the UA chrome a <button class="link"> carries so it renders identically
+   to the <span> it replaces — keyboard-reachable, same pixels. */
+.section-header button.link {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.section-header button.link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.card {
+  background: var(--paper);
+  border-radius: var(--r-lg);
+  padding: var(--pad-card);
+  border: 1px solid var(--line-soft);
+}
+.card-soft {
+  background: var(--card-soft);
+  border-radius: var(--r-lg);
+  padding: var(--pad-card);
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+}
+.between {
+  justify-content: space-between;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+.stack-sm {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.stack-xs {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.num {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+.muted {
+  color: var(--muted);
+}
+
+/* Tags / pills */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  padding: 3px 7px;
+  border-radius: var(--r-sm);
+  background: var(--card-soft);
+  color: var(--ink-soft);
+  border: 1px solid var(--line-soft);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-weight: 400;
+}
+.tag.green {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  border-color: transparent;
+}
+.tag.amber {
+  background: color-mix(in oklab, var(--amber) 18%, transparent);
+  color: var(--amber);
+  border-color: transparent;
+}
+.tag.red {
+  background: color-mix(in oklab, var(--loss) 18%, transparent);
+  color: var(--loss);
+  border-color: transparent;
+}
+
+.delta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.delta.up {
+  color: var(--gain);
+}
+.delta.down {
+  color: var(--loss);
+}
+
+/* Buttons */
+.btn {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  border: 0;
+  border-radius: var(--r-md);
+  padding: 11px 18px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition:
+    transform 0.06s ease,
+    background 0.18s;
+  letter-spacing: -0.01em;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+/* Global disabled state for every .btn variant. */
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.btn:disabled:active,
+.btn[disabled]:active {
+  transform: none;
+}
+.btn.primary {
+  background: var(--ink);
+  color: var(--bg);
+}
+.btn.primary:hover {
+  filter: brightness(1.1);
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn.ghost:hover {
+  background: var(--card-soft);
+}
+.btn.accent {
+  background: var(--accent);
+  color: white;
+}
+.btn.danger {
+  background: var(--loss);
+  color: white;
+}
+.btn.danger:hover {
+  filter: brightness(1.08);
+}
+.btn.full {
+  width: 100%;
+  display: flex;
+}
+.btn.sm {
+  padding: 7px 12px;
+  font-size: 12.5px;
+  border-radius: var(--r-sm);
+}
+/* Borderless, low-emphasis text affordance — a quiet link styled as a button so
+   it stays keyboard-focusable. For inline disclosures ("Show N more") and other
+   subtle in-context actions that shouldn't read as a chunky bordered block. */
+.btn.link {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  padding: 4px 6px;
+  font-weight: 400;
+}
+.btn.link:hover {
+  color: var(--ink);
+  background: transparent;
+}
+/* Uniform modal-footer button height. Placed AFTER the `.btn` rules so the
+   descendant selector stays non-descending in specificity. Floors every footer
+   button to one height — ghost / primary / danger all match regardless of label,
+   so the footer row never looks ragged. */
+.modal-footer .btn {
+  min-height: 40px;
+}
+
+/* Hero */
+.hero-block {
+  padding: 6px 16px 4px;
+}
+.hero-label {
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+.hero-edit-btn {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.6;
+  transition:
+    opacity 0.15s,
+    background 0.15s;
+}
+.hero-edit-btn:hover {
+  opacity: 1;
+  background: var(--card-soft);
+}
+.hero-value {
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Privacy ("Discreet Mode") — masked ฿ amounts. When hidden, the real digits are
+   NOT rendered (blurring them would leak magnitude via width); a crisp ฿ sign is
+   followed by a blurred FIXED placeholder, so it reads like a real hidden balance
+   yet every amount in a comparison group masks to the same width. The control
+   wrapper carries focus/cursor; only the digits are blurred, so the focus ring
+   stays crisp. */
+.private-amt {
+  /* Lay the crisp ฿ and the blurred digits in a row, vertically centered. The ฿
+     stays full size so it keeps the line height — the value doesn't move up when
+     masked — while the smaller digits sit centered in that line, leaving vertical
+     slack around them for the blur halo to fall into instead of onto neighbours. */
+  display: inline-flex;
+  align-items: center;
+  border-radius: 6px;
+}
+button.private-amt {
+  /* The tappable hero value: a button that reads as the surrounding text. */
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+button.private-amt:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.private-amt-digits {
+  display: inline-block;
+  /* Smaller than the surrounding text so the blur halo is small and stays within
+     the line's vertical slack (see .private-amt) rather than bleeding outward. */
+  font-size: 0.75em;
+  filter: blur(6px);
+  opacity: 0.7;
+  user-select: none;
+}
+/* The hero's type is large, so even at 0.62em a touch more blur reads as masked. */
+.private-amt-digits--wide {
+  filter: blur(9px);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.hero-value .cents {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 22px;
+}
+.hero-sub {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 12.5px;
+  flex-wrap: wrap;
+}
+.hero-sub > * {
+  white-space: nowrap;
+}
+.delta-pill {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: var(--r-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.delta-pill.down {
+  background: color-mix(in oklab, var(--loss) 12%, transparent);
+  color: var(--loss);
+}
+/* Scorecard — the stacked return rows under the hero value. One language across
+   all three: a ▲/▼ caret + value carry the gain/loss color, a secondary % sits in
+   parens, and the trailing context is muted. Left edges align into a caret column
+   (no pill fill — flat, like the chart toolbar). */
+.scorecard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  margin-top: 8px;
+}
+.score-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  /* Fixed 18px row height (line-height) + 3px scorecard gap, so the scorecard's
+     height is deterministic and the chart can grow/shrink by exactly that as rows
+     appear/hide — keeping the chart + controls below at a constant total height
+     (see the scoreH() math in PortfolioScreen, which also accounts for the
+     headline row's extra gap). */
+  line-height: 18px;
+  font-size: 13.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--gain);
+}
+.score-row[data-down] {
+  color: var(--loss);
+}
+.score-val {
+  font-weight: 600;
+}
+/* The headline row's % is part of its figure — same weight as the value. */
+.score-pct {
+  font-weight: 600;
+}
+.score-ctx {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--muted);
+  font-weight: 400;
+}
+/* Optical nudge: the chevron reads high next to lowercase text — drop it ~1px. */
+.score-ctx svg {
+  position: relative;
+  top: 1px;
+}
+/* Row 1 is a button (tap to open the returns breakdown) — strip the UA chrome and
+   let .score-row drive the look; the chevron + hover/focus are the tap affordance. */
+button.score-row {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+/* Period rows recede with a lighter value weight, so the bold all-time row reads
+   as the headline while every color stays at full contrast and the rows keep
+   equal spacing — one cohesive block. */
+.score-row:not(.score-row--tap) .score-val {
+  font-weight: 400;
+}
+.score-row--tap:hover .score-ctx,
+.score-row--tap:focus-visible .score-ctx {
+  color: var(--ink);
+}
+.score-row--tap:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+/* Returns breakdown sheet (#152) — narrower than the default detail modal, to
+   match the form/edit-holding width. */
+.modal.rb-sheet {
+  max-width: 560px;
+}
+/* The breakdown ends in a short note, so the detail variant's 24px bottom
+   breathing room reads as too much here — trim it (scoped to this sheet). */
+.modal.rb-sheet .modal-body {
+  padding-bottom: 8px;
+}
+.returns-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+/* Hero — the headline total return, free to be large because it's above the
+   aligned row grid (not a row that would break the number column). */
+.rb-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.rb-hero-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.rb-hero-value {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.rb-hero-pct {
+  font-size: 15px;
+  font-weight: 500;
+}
+.rb-hero-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+/* Basis note inside the returns-breakdown sheet (#149). */
+.rb-cash-mode-note {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 2px 0 0;
+}
+.rb-group {
+  display: flex;
+  flex-direction: column;
+}
+.rb-group-title {
+  margin: 0 0 2px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.rb-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.rb-row:last-child {
+  border-bottom: 0;
+}
+.rb-label {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  color: var(--ink);
+  font-size: 13.5px;
+}
+.rb-hint {
+  font-size: 11px;
+  color: var(--muted);
+}
+/* The value column: ฿ amount (one size, tabular, right-aligned) with an optional
+   % on a smaller line directly under it — kept off the amount's right edge so the
+   amounts line up cleanly down the column. */
+.rb-value {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  white-space: nowrap;
+}
+.rb-amount {
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.rb-pct {
+  margin-top: 1px;
+  font-size: 11.5px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.rb-note {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 4px 0 0;
+}
+
+/* Stats strip */
+.stats-strip {
+  margin: 10px 16px 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background: var(--card-soft);
+  border-radius: var(--r-md);
+  padding: 10px 4px;
+}
+.stats-strip > div {
+  text-align: center;
+  padding: 0 4px;
+  border-right: 1px solid var(--line);
+}
+.stats-strip > div:last-child {
+  border-right: none;
+}
+.stats-strip .lbl {
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+  font-family: var(--font-mono);
+}
+.stats-strip .val {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* KPI cards (components/ui/Stat) — the richer recap: a bordered card per metric
+   with a label, a large tone-colored value, and an optional caption. Auto-fits
+   so 2–4 cards wrap cleanly on any width. */
+/* Query container so the card grid responds to the CONTAINER's width, not the
+   viewport — a narrowed content area (desktop + sidebar) must still go 2×2 even
+   though the viewport is wide. */
+.stat-cards-cq {
+  container-type: inline-size;
+}
+.stat-cards {
+  display: grid;
+  /* 2 per row by default → four cards read as a tidy 2×2 (plain auto-fit squeezes
+     a 3+1 at in-between widths). Switches to one auto-fit row only once the
+     container is genuinely wide enough for four (≈4×120 + gaps). */
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 10px 4px 4px;
+}
+/* Hold 2×2 until the container can give each of four cards ~150px+ — enough for
+   an 8-digit baht value (e.g. ฿12,345,678) without wrapping. Below this, 4-up
+   cramps the INVESTED/REALIZED figures, so stay 2×2. */
+@container (min-width: 640px) {
+  .stat-cards {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
+.stat-card {
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-md, 10px);
+  padding: 10px 12px;
+}
+.stat-card__label {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.stat-card__value {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+.stat-card__caption {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 2px;
+  line-height: 1.35;
+}
+/* Bottom-align the value so a row of cards stays aligned even when labels wrap to
+   a different number of lines (e.g. the US detail sheet's 3-up grid, where
+   "Dividend yield" wraps but "Net margin" doesn't). Opt-in — the base cards keep
+   their natural top-to-bottom flow. */
+.stat-cards--eq .stat-card {
+  display: flex;
+  flex-direction: column;
+}
+.stat-cards--eq .stat-card__value {
+  margin-top: auto;
+}
+/* Uppercase labels to match the History/Position stat strips (which pass
+   already-uppercase strings). */
+.stat-cards--eq .stat-card__label {
+  text-transform: uppercase;
+}
+
+/* Range chips (pill segmented control) */
+.range-pills {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--chip-bg);
+  border-radius: 9px;
+  font-size: 11px;
+  height: 28px;
+  box-sizing: border-box;
+}
+.range-pills button {
+  padding: 4px 9px;
+  border-radius: 7px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-weight: 400;
+  color: var(--muted);
+  font-family: var(--font-sans);
+  letter-spacing: 0.01em;
+}
+.range-pills button[data-active="true"] {
+  background: var(--chip-active-bg);
+  color: var(--ink);
+  font-weight: 500;
+  box-shadow: var(--chip-shadow);
+}
+/* Square-ish icon button for the chart's scale / cash / share tools (top-right). */
+.chart-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 7px;
+  border-radius: 7px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+.chart-tool[data-active="true"] {
+  background: var(--accent-soft);
+  border-color: transparent;
+  color: var(--accent-ink);
+}
+
+/* Worded toolbar button (Google-Finance style) — scale / cash / breakdown
+   normalization. Transparent, muted text, active = accent. Replaces the icon-only
+   chart-tool in the chart's control toolbar. */
+.chart-toolbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  height: 28px;
+  padding: 0 7px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+.chart-toolbtn:hover {
+  color: var(--ink);
+}
+.chart-toolbtn[data-active="true"] {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+/* Cash toggle: struck through when investable cash is excluded — reads as "not
+   counted", without the remove-button feel an ✕ would borrow from the Compare ×. */
+.cash-mode-kebab .chart-toolbtn[data-active="true"] {
+  text-decoration: line-through;
+}
+
+/* Chart control toolbar (Google-Finance feel). Every control is the same flat
+   worded button, so a thin vertical rule separates the parts: period │ mode │
+   Log │ Cash │ Compare. Each part flows and wraps individually; the rule is
+   drawn as a ::before in the gap to a part's left, and overflow-x: clip removes it
+   when the part has wrapped to a new line (its rule pokes past the left edge), so a
+   wrapped line never opens with a divider. overflow-y stays visible so the Cash /
+   Compare menus (which open downward) are not clipped. */
+.chart-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 8px;
+  column-gap: 14px;
+  margin-top: 12px;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.chart-toolbar > * {
+  position: relative;
+}
+.chart-toolbar > * + *::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 50%;
+  width: 1px;
+  height: 16px;
+  background: var(--line);
+  transform: translateY(-50%);
+}
+.toolbar-part {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* First-time note for the Cash checkbox — a small card where the old dropdown
+   opened, shown until the user dismisses it. */
+.cash-hint {
+  /* position/top/left come from usePopoverPlacement (fixed, flips to stay on
+     screen, escapes the toolbar's overflow-x clip). */
+  z-index: 90;
+  width: max-content;
+  max-width: 240px;
+  padding: 10px 12px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+}
+.cash-hint__body {
+  margin: 0 0 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* Adaptive chart caption — one short line per view; jargon renders as `.term`
+   (dotted-underline) words that open their definition in the `.chart-info` card. */
+.chart-caption-line {
+  margin: 8px 4px 0;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.term {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  /* Standard glossary affordance: a faint dotted underline that says "tap to
+     define", brightening with the text on hover. */
+  text-decoration: underline dotted;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in oklab, currentColor 60%, transparent);
+}
+.term:hover,
+.term:focus-visible {
+  color: var(--ink);
+  text-decoration-color: currentColor;
+  outline: none;
+}
+
+/* Definition popover for a `.term` (and the cash hint shares the card look);
+   placement from usePopoverPlacement. */
+.chart-info {
+  z-index: 90;
+  width: max-content;
+  max-width: 260px;
+  padding: 10px 12px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.chart-info__note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* Inline action: accent text + a trailing chevron (the affordance), matching the
+   hero's "total return ›". No underline, no pill (pills read as labels here). Used
+   by the cash-basis switches in the breakdown + benchmark nudge (#149). */
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Filter chips (horizontal scroll) */
+.filter-chips {
+  display: flex;
+  gap: 6px;
+  padding: 4px 16px 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.filter-chips::-webkit-scrollbar {
+  display: none;
+}
+.filter-chips .chip {
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: var(--chip-bg);
+  color: var(--ink-soft);
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid var(--line-soft);
+  cursor: pointer;
+}
+.filter-chips .chip[data-active="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: transparent;
+}
+
+/* Holdings list — dense, no card wrap */
+.holdings-list {
+  padding: 0 8px;
+}
+.holding {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.holding:hover {
+  background: var(--card-soft);
+}
+.holding .swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: white;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+[data-theme="dark"] .holding .swatch,
+[data-theme="system"] .holding .swatch {
+  color: var(--bg);
+}
+@media (prefers-color-scheme: dark) {
+  [data-theme="system"] .holding .swatch {
+    color: var(--bg);
+  }
+}
+.holding .name {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.holding .sub {
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.holding .value {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.holding .pct {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Chat */
+/* Mobile fullscreen chat shell. The wide-screen panel override below
+   (.ra-chat-body .screen) wins on specificity and switches height to 100%
+   so the screen fills its panel container instead of viewport-relative. */
+.chat-shell {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - 96px - var(--demo-banner-h, 0px));
+}
+.chat-stream {
+  padding: 8px 16px 100px;
+}
+/* The message column+gap lives on a stable inner wrapper, not the host: the
+   desktop overlay scrollbar (useOverlayScrollbar) re-parents the host's single
+   child into a generated viewport, which would strip a flex-gap set on the host.
+   Carrying it here survives the restructure and matches native (mobile, no OS).
+   Mirrors `.ra-panel-body-content`. The host keeps its padding (OS preserves it). */
+.chat-stream-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Fill the stream height so the empty-state greeting can center vertically;
+     for a normal conversation the messages just stack from the top as before. */
+  min-height: 100%;
+}
+/* Empty-state welcome — a centered, bubble-less greeting (ChatGPT/Claude style)
+   shown only before the first user message, then replaced by the conversation. */
+.chat-intro {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
+  padding: 24px 18px;
+}
+/* The shared BrandMark (a rounded square) clipped to a circle for the welcome —
+   one shared element, so it tracks any future logo/theme change automatically. */
+.chat-intro-mark {
+  clip-path: circle(50%);
+}
+.chat-intro-text {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.msg {
+  max-width: 86%;
+}
+.msg.user {
+  align-self: flex-end;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 16px 16px 4px 16px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+}
+/* Advisor replies are borderless prose — only the user's
+   own messages get a chat bubble. The meta line + accent dot mark the turn. */
+.msg.ai {
+  align-self: flex-start;
+  max-width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 2px 2px 2px 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.msg.ai .meta {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.msg.ai .meta::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+}
+/* Rendered Markdown inside an Advisor bubble (see MarkdownMessage.tsx). Scoped
+   to `.md` so it only affects assistant replies, never user bubbles. Tuned to
+   sit flush in the chat bubble: no leading/trailing margin, inherits the
+   bubble's 13.5px / 1.5 type. Tables reuse the .chat-import-table look. */
+.md > :first-child {
+  margin-top: 0;
+}
+.md > :last-child {
+  margin-bottom: 0;
+}
+.md p {
+  margin: 0 0 8px;
+}
+.md ul,
+.md ol {
+  margin: 0 0 8px;
+  padding-left: 20px;
+}
+.md li {
+  margin: 2px 0;
+}
+.md li > ul,
+.md li > ol {
+  margin: 2px 0;
+}
+.md h1,
+.md h2,
+.md h3,
+.md h4,
+.md h5,
+.md h6 {
+  margin: 12px 0 6px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+.md h1 {
+  font-size: 16px;
+}
+.md h2 {
+  font-size: 15px;
+}
+.md h3 {
+  font-size: 14px;
+}
+.md h4,
+.md h5,
+.md h6 {
+  font-size: 13.5px;
+}
+.md strong {
+  font-weight: 650;
+}
+.md em {
+  font-style: italic;
+}
+.md a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.md code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--card-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 1px 4px;
+}
+.md pre {
+  margin: 0 0 8px;
+  padding: 9px 11px;
+  background: var(--card-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-md);
+  overflow-x: auto;
+}
+.md pre code {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.md blockquote {
+  margin: 0 0 8px;
+  padding: 1px 0 1px 10px;
+  border-left: 3px solid var(--line);
+  color: var(--ink-soft);
+}
+.md hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 12px 0;
+}
+.md img {
+  max-width: 100%;
+  border-radius: var(--r-sm);
+}
+.md table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 4px 0 8px;
+  display: block;
+  overflow-x: auto;
+}
+.md th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+.md td {
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.suggested-chips {
+  display: flex;
+  gap: 6px;
+  padding: 0 16px 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.suggested-chips::-webkit-scrollbar {
+  display: none;
+}
+.chip {
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 12px;
+  border-radius: var(--r-full);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  cursor: pointer;
+  white-space: nowrap;
+}
+/* Neutralize the UA chrome a <button class="chip"> carries so it renders
+   identically to a <span class="chip"> — keyboard-reachable, same pixels. */
+button.chip {
+  margin: 0;
+  text-align: inherit;
+  line-height: normal;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.chip:hover {
+  background: var(--card-soft);
+}
+.chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* A chip rendered as a static label (no handler): looks the part, doesn't lie
+   about being interactive — default cursor, no hover shift. The hover-reset
+   mirrors each base background (standalone .chip vs .filter-chips .chip). */
+.chip[data-static] {
+  cursor: default;
+}
+.chip[data-static]:hover {
+  background: var(--paper);
+}
+.filter-chips .chip[data-static]:hover {
+  background: var(--chip-bg);
+}
+.composer {
+  position: relative;
+  margin: 6px 16px 12px;
+  background: var(--paper);
+  border-radius: var(--r-2xl);
+  border: 1px solid var(--line);
+  /* Symmetric inset so the attach button on the left lines up with the send
+     button on the right. When no attach button is rendered (vision disabled),
+     the text input gets its own left inset below so it isn't flush. */
+  padding: 5px;
+  display: flex;
+  /* Bottom-aligned so the attach/send buttons stay pinned to the bottom as the
+     textarea grows taller. */
+  align-items: flex-end;
+  gap: 6px;
+  z-index: 20;
+  flex-shrink: 0;
+}
+.composer:not(:has(.attach-btn)) textarea {
+  padding-left: 9px;
+}
+.composer textarea {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.45;
+  /* Vertical padding tuned so a single empty line is the same height as the
+     32px send button — bottom-aligned, that makes the space above and below the
+     button symmetric. */
+  padding: 6px 0;
+  background: transparent;
+  color: var(--ink);
+  /* Auto-grows via JS (height set to scrollHeight); grows to ~10 lines of text
+     (line-height 1.45 × 13.5px × 10 + 12px padding) then scrolls. */
+  resize: none;
+  max-height: 208px;
+  overflow-y: auto;
+}
+/* Fine pointer (desktop): a thin overlay-style scrollbar matching the app's
+   custom scroll. Touch keeps the native auto-hiding bar (no class → no rule).
+   A textarea can't host OverlayScrollbars, so this is the closest faithful
+   match (a 6px lane rather than a true zero-area overlay). */
+.composer textarea.composer-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.composer textarea.composer-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.composer textarea.composer-scroll::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 3px;
+}
+.composer textarea.composer-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+.composer textarea.composer-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.composer button {
+  width: 32px;
+  height: 32px;
+  /* Full circle to match the pill-rounded composer (was a 10px rounded square,
+     which read as boxy against the round container ends). */
+  border-radius: var(--r-full);
+  border: 0;
+  background: var(--ink);
+  color: var(--bg);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.composer button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+/* Attach (paperclip) button — ghost style, distinct from the dark send button. */
+.composer .attach-btn {
+  background: transparent;
+  color: var(--muted);
+}
+.composer .attach-btn:hover:not(:disabled) {
+  color: var(--ink);
+}
+
+/* Pending image attachments shown above the composer. */
+.composer-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 16px 6px;
+}
+.composer-attachments .thumb {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  overflow: visible;
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.composer-attachments .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+.composer-attachments .thumb button {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--r-full);
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+.composer-attachments .note {
+  flex-basis: 100%;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* Thumbnails of images attached to a sent message. */
+.chat-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+.chat-attachments .thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  padding: 0;
+  cursor: zoom-in;
+  background: var(--card-soft);
+}
+.chat-attachments .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Compact holdings table inside the in-chat import card. */
+.chat-import-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 4px 0 2px;
+}
+.chat-import-table th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-bottom: 1px solid var(--line);
+}
+.chat-import-table td {
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+}
+.chat-import-table .t {
+  font-family: var(--font-mono);
+}
+.chat-import-table .flag {
+  margin-left: 6px;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--warn, #b45309);
+}
+.chat-import-table .flag.est {
+  color: var(--muted);
+}
+/* Narrow bubble → stack each row as a labelled card (label from each cell's
+   data-label). Threshold sized for the widest table (6-col transactions:
+   Date · Symbol · Type · Units · Price · Total). */
+@container (max-width: 460px) {
+  .chat-import-table thead {
+    display: none;
+  }
+  .chat-import-table,
+  .chat-import-table tbody,
+  .chat-import-table tr,
+  .chat-import-table td {
+    display: block;
+    width: 100%;
+  }
+  .chat-import-table tr {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 3px 8px;
+    margin: 6px 0;
+  }
+  .chat-import-table td {
+    border: 0;
+    padding: 2px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    text-align: right;
+  }
+  .chat-import-table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: left;
+    flex: 0 0 auto;
+  }
+}
+
+/* Full-image lightbox overlay. */
+.chat-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  border: 0;
+  background: rgba(0, 0, 0, 0.78);
+  cursor: zoom-out;
+}
+.chat-lightbox img {
+  /* Size against the viewport (minus the 24px overlay padding on each side), not
+     100% of the grid cell — a grid item's automatic min-size lets `max-height:
+     100%` be ignored, so the image overflows at its intrinsic size. Viewport
+     units are always definite, so the image fits within the overlay. */
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 48px);
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.typing {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+}
+.typing span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--muted-2);
+  animation: typing 1.2s infinite;
+}
+.typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes typing {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+
+/* Markets news */
+.news-card {
+  padding: 12px 6px;
+  border-bottom: 1px solid var(--line-soft);
+  cursor: pointer;
+}
+.news-card:last-child {
+  border-bottom: 0;
+}
+.news-card .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+}
+.news-card .title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.news-card .summary {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+.news-card .impact {
+  margin-top: 8px;
+  padding: 7px 10px;
+  background: var(--accent-soft);
+  border-radius: var(--r-md);
+  font-size: 11.5px;
+  color: var(--accent-ink);
+  display: flex;
+  gap: 6px;
+  line-height: 1.4;
+}
+.news-card .impact strong {
+  font-weight: 500;
+}
+
+.bullet-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.bullet-list li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px dashed var(--line-soft);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.bullet-list li:last-child {
+  border-bottom: 0;
+}
+.bullet-list .marker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+/* Connect / onboarding */
+.onboard-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 36px 22px 28px;
+}
+.broker-card {
+  padding: 14px;
+  background: var(--paper);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.broker-card:hover {
+  border-color: var(--ink-soft);
+}
+.broker-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Range bars (rebalance) */
+.range-bar {
+  height: 6px;
+  background: var(--line-soft);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.range-bar .fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+}
+.range-bar .target {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 12px;
+  background: var(--ink);
+}
+
+.screen {
+  opacity: 1;
+}
+
+/* ========= Multi-portfolio + charts (added) ========= */
+
+/* Charts are visual, not text: suppress the text-selection highlight and the
+   focus outline recharts puts on its (tabbable) surface, so clicking/dragging
+   a chart never draws a selection box or border around it. */
+.recharts-wrapper,
+.recharts-surface,
+.chart-row .chart-card > svg {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+.recharts-wrapper :focus,
+.recharts-surface:focus,
+.recharts-wrapper :focus-visible {
+  outline: none;
+}
+
+/* Chart axis + grid */
+.chart-axis {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  fill: var(--muted-2);
+}
+.chart-grid {
+  stroke: var(--line-soft);
+  stroke-width: 1;
+}
+
+/* Portfolio switcher (segmented pills at top of Portfolio).
+   Sticky to match .sub-tabs across screens — same `top` math, same
+   z-index. Without JS, this is the static-pinned base case. */
+.portfolio-switch {
+  display: flex;
+  gap: 4px;
+  padding: 8px 16px;
+  scroll-padding-right: 16px;
+  margin-bottom: 8px;
+  margin-top: -2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky;
+  top: calc(var(--topbar-h) - 2px + var(--demo-banner-h, 0px));
+  z-index: 20;
+  background: var(--bg);
+}
+.portfolio-switch::-webkit-scrollbar {
+  display: none;
+}
+.portfolio-switch button {
+  background: var(--card-soft);
+  border: 1px solid var(--line-soft);
+  color: var(--ink-soft);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  padding: 7px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  transition: all 0.18s;
+}
+.portfolio-switch button[data-active="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: transparent;
+}
+/* The leading menu button — opens the portfolios manager (dock panel on wide,
+   full page on phone). An ACTION, not a selector: a borderless, muted icon
+   button. That borderless-vs-filled-pill contrast plus the gap reads it as a
+   leading tool rather than a stunted tab — no divider line needed. */
+.portfolio-switch .pf-switch-menu {
+  padding: 7px 8px;
+  color: var(--muted);
+  background: transparent;
+  border-color: transparent;
+}
+.portfolio-switch .pf-switch-menu:hover {
+  color: var(--ink);
+  background: var(--card-soft);
+  border-color: transparent;
+}
+.portfolio-switch .pf-icon {
+  /* Flex-center the icon: the old font-size/mono here was for a text glyph and
+     left the SVG sitting ~1.5px above the chip's centre line. */
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.7;
+}
+.portfolio-switch .pf-sub {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-left: 4px;
+  padding-left: 6px;
+  border-left: 1px solid var(--line);
+}
+.portfolio-switch button[data-active="true"] .pf-sub {
+  /* Active-button text is var(--bg) — flip to dimmed currentColor so this
+     stays readable in both themes (was hardcoded white → white-on-white
+     in dark mode). */
+  color: color-mix(in srgb, currentColor 55%, transparent);
+  border-left-color: color-mix(in srgb, currentColor 25%, transparent);
+}
+
+/* Notes card for portfolio (free-form) */
+.pf-notes {
+  background: var(--card-soft);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin: 0 16px 12px;
+  white-space: pre-wrap;
+  border-left: 3px solid var(--accent);
+}
+
+/* Sector/geo bar (horizontal stacked) */
+.stacked-bar {
+  display: flex;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.stacked-bar > span {
+  flex-shrink: 0;
+}
+
+/* Chart cards grid (Portfolio extra charts).
+   1 col mobile / 2 col tablet+desktop — clean 2×2 for the 4 cards, no
+   awkward dangling card on a 3-col layout. No horizontal scroll. */
+.chart-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 0 16px;
+}
+@media (min-width: 600px) {
+  .chart-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.chart-row .chart-card {
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  /* Allow content (charts with explicit widths) to shrink with the column. */
+  min-width: 0;
+  /* No fixed height: the grid's default align-items:stretch already equalizes
+     cards WITHIN a row (each row sizes to its tallest card) while letting
+     DIFFERENT rows differ. On mobile the grid is one column, so every card is
+     alone in its row and sizes to its own content. The SVG-fill rule below lets
+     a stretched chart-card grow its viz into the extra height. */
+}
+/* Push the last visual element to the bottom and let it stretch into any
+   extra height the grid gave the card. Charts (MiniLine / MiniBars) use
+   preserveAspectRatio="none" so they fill the assigned height nicely. */
+.chart-row .chart-card > svg:last-child {
+  flex: 1;
+  height: auto;
+  min-height: 48px;
+  margin-top: 4px;
+}
+.chart-row .chart-card .h {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.chart-row .chart-card .v {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 4px;
+}
+
+/* Plan edit proposal card (in chat) */
+.plan-proposal {
+  background: color-mix(in oklab, var(--accent) 8%, var(--paper));
+  border: 1px solid var(--accent);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin: 6px 0;
+  /* So the in-chat import table can respond to the BUBBLE width (not the
+     viewport) — table when wide, stacked cards when narrow. Future-proof for a
+     resizable sidebar that changes the bubble width without a viewport change. */
+  container-type: inline-size;
+}
+.plan-proposal .label {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--accent-ink);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.plan-proposal .diff {
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.5;
+  margin: 6px 0;
+  white-space: pre-wrap;
+}
+.plan-proposal .diff .add {
+  background: color-mix(in oklab, var(--gain) 14%, transparent);
+  color: var(--gain);
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+.plan-proposal .diff .rm {
+  background: color-mix(in oklab, var(--loss) 14%, transparent);
+  color: var(--loss);
+  padding: 1px 3px;
+  text-decoration: line-through;
+  border-radius: 3px;
+}
+.plan-proposal .actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+/* ============================================================================
+ * Responsive shell styles.
+ *
+ * Breakpoints:
+ *   <  700px   mobile   — original .app-frame layout (defined in styles.css)
+ *   700–1199   tablet   — .ra-shell.tablet, Gmail-style icon+label nav
+ *   >= 1200    desktop  — .ra-shell.desktop, wide labeled nav
+ * ========================================================================== */
+
+/* ----- Layout grids ----- */
+.ra-shell {
+  display: grid;
+  width: 100%;
+  min-height: calc(100dvh - var(--demo-banner-h));
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* Tablet: 88 | flex | 72 — panel doesn't take a column, it overlays main
+   instead (see .ra-shell.tablet.panel-open .ra-panel below). Side-by-side
+   at 700-1199px squeezes main content down to ~200px, which is unusable. */
+.ra-shell.tablet.panel-open,
+.ra-shell.tablet.panel-closed {
+  grid-template-columns: 88px 1fr 72px;
+}
+
+/* Desktop ≥1200: 180 | flex | panel | 76 — labeled rail sized to the longest
+   nav label ("Portfolio"), no wasted whitespace. The panel column is user-
+   resizable (issue #95): its width is `--ra-panel-width` (set on the shell,
+   default 380px), and main is `minmax(440px, 1fr)` so dragging the panel wider
+   can never starve main below its floor. */
+.ra-shell.desktop.panel-open {
+  grid-template-columns: 180px minmax(440px, 1fr) var(--ra-panel-width, 380px) 76px;
+}
+.ra-shell.desktop.panel-closed {
+  grid-template-columns: 180px 1fr 76px;
+}
+
+/* Maximized ("expand to full", issue #95): collapse main, panel takes the flex
+   column. Main is display:none below so the 0 column carries no overflow. */
+.ra-shell.desktop.panel-open.panel-max {
+  grid-template-columns: 180px 0 1fr 76px;
+}
+
+/* Narrow desktop (1000–1199): keep side-by-side panel but borrow the tablet
+   rail (88px column, compact icon+label stack). The tablet rail styles
+   already exist — we just extend the same selectors below to also match
+   .ra-shell.desktop, gated to ≤1199px. The labeled-rail desktop variant is
+   wrapped in (min-width: 1200px) so it doesn't fight the compact one. */
+@media (max-width: 1199px) {
+  .ra-shell.desktop.panel-open {
+    grid-template-columns: 88px minmax(440px, 1fr) var(--ra-panel-width, 380px) 76px;
+  }
+  .ra-shell.desktop.panel-closed {
+    grid-template-columns: 88px 1fr 76px;
+  }
+  .ra-shell.desktop.panel-open.panel-max {
+    grid-template-columns: 88px 0 1fr 76px;
+  }
+}
+
+/* When maximized, main collapses to its 0-width grid track and clips its
+   content — a full takeover. We must NOT `display:none` it: removing a grid
+   item reflows auto-placement, so the panel would slide into main's 0 track
+   and vanish. Keeping it in flow at width 0 preserves the column mapping. */
+.ra-shell.panel-max .ra-main {
+  overflow: hidden;
+}
+
+/* ----- Left nav rail ----- */
+.ra-rail {
+  background: var(--paper);
+  border-right: 1px solid var(--line-soft);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: calc(100dvh - var(--demo-banner-h));
+  z-index: 25;
+}
+
+/* Compact rail (tablet + narrow desktop ≤1199): centered icons, 6px padding. */
+.ra-shell.tablet .ra-rail {
+  padding: 18px 6px;
+  align-items: center;
+}
+@media (max-width: 1199px) {
+  .ra-shell.desktop .ra-rail {
+    padding: 18px 6px;
+    align-items: center;
+  }
+}
+/* Labeled rail (desktop ≥1200): wider padding for side-by-side icon+label. */
+@media (min-width: 1200px) {
+  .ra-shell.desktop .ra-rail {
+    padding: 18px 12px;
+  }
+}
+
+.ra-rail-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.ra-rail-item {
+  background: transparent;
+  border: 0;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  transition:
+    background 0.18s,
+    color 0.18s;
+}
+.ra-rail-item:hover {
+  background: var(--card-soft);
+  color: var(--ink);
+}
+.ra-rail-item[data-active="true"] {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.ra-rail-item[data-active="true"] svg {
+  color: var(--accent-ink);
+}
+
+/* Compact rail-item (tablet + narrow desktop ≤1199): column-stacked icon + label. */
+.ra-shell.tablet .ra-rail-item {
+  flex-direction: column;
+  width: 76px;
+  padding: 9px 4px 7px;
+  gap: 5px;
+  font-size: 10.5px;
+  line-height: 1.1;
+}
+@media (max-width: 1199px) {
+  .ra-shell.desktop .ra-rail-item {
+    flex-direction: column;
+    width: 76px;
+    padding: 9px 4px 7px;
+    gap: 5px;
+    font-size: 10.5px;
+    line-height: 1.1;
+  }
+}
+/* Labeled rail-item (desktop ≥1200): icon and label side-by-side. */
+@media (min-width: 1200px) {
+  .ra-shell.desktop .ra-rail-item {
+    padding: 9px 12px;
+    gap: 12px;
+    font-size: 13px;
+  }
+  .ra-shell.desktop .ra-rail-item-label {
+    flex: 1;
+    text-align: left;
+  }
+}
+
+/* Rail footer / avatar / account menu */
+.ra-rail-foot {
+  position: relative;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-soft);
+}
+.ra-shell.tablet .ra-rail-foot {
+  display: flex;
+  justify-content: center;
+  border-top: 0;
+  padding-top: 12px;
+}
+@media (max-width: 1199px) {
+  .ra-shell.desktop .ra-rail-foot {
+    display: flex;
+    justify-content: center;
+    border-top: 0;
+    padding-top: 12px;
+  }
+}
+.ra-rail-avatar-btn {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px;
+  border-radius: 10px;
+  width: 100%;
+  text-align: left;
+}
+.ra-rail-avatar-btn:hover {
+  background: var(--card-soft);
+}
+.ra-shell.tablet .ra-rail-avatar-btn {
+  padding: 0;
+  width: auto;
+}
+@media (max-width: 1199px) {
+  .ra-shell.desktop .ra-rail-avatar-btn {
+    padding: 0;
+    width: auto;
+  }
+  .ra-shell.desktop .ra-rail-acct-text {
+    display: none;
+  }
+}
+.ra-rail-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.ra-rail-acct-text {
+  min-width: 0;
+  flex: 1;
+}
+.ra-rail-acct-name {
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+.ra-rail-acct-sub {
+  font-size: 10.5px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+.ra-account-menu {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  min-width: 200px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  padding: 6px;
+  z-index: 60;
+}
+.ra-shell.tablet .ra-account-menu {
+  left: 8px;
+}
+.ra-account-menu button {
+  background: transparent;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--ink);
+  padding: 8px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ra-account-menu button:hover {
+  background: var(--card-soft);
+}
+.ra-account-menu hr {
+  border: 0;
+  border-top: 1px solid var(--line-soft);
+  margin: 4px 0;
+}
+
+/* Mobile account menu — drops from each screen's top-right control (settings
+   gear / chat kebab), mirrors the desktop rail dropdown's contents. Backdrop
+   dismisses on tap. */
+.mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  border: 0;
+  z-index: 45;
+}
+.mobile-account-menu {
+  position: fixed;
+  top: calc(52px + var(--demo-banner-h, 0px));
+  right: 12px;
+  min-width: 200px;
+  max-width: 80vw;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  z-index: 46;
+}
+.mobile-account-menu button {
+  background: transparent;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--ink);
+  padding: 11px 12px;
+  border-radius: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.mobile-account-menu button:active {
+  background: var(--card-soft);
+}
+.mobile-account-menu hr {
+  border: 0;
+  border-top: 1px solid var(--line-soft);
+  margin: 4px 0;
+}
+
+/* ----- Main content area ----- */
+.ra-main {
+  min-width: 0;
+  background: var(--bg);
+  /* OverlayScrollbars owns the scroll + scrollbar here (see App.tsx). It hides
+     the native scrollbar and floats a thin overlay thumb that carves NO layout
+     space, so the sticky tab bars stay flush to the docked chat panel in every
+     OS scrollbar regime (classic or overlay). No `scrollbar-gutter` needed —
+     there is no native scrollbar lane to reserve. Note: OverlayScrollbars moves
+     the actual scrolling to a generated `[data-overlayscrollbars-viewport]`
+     child; useScrollHide reads that child's scrollTop, not `.ra-main`'s. */
+  overflow-y: auto;
+  height: calc(100dvh - var(--demo-banner-h));
+  /* `none` (vs `contain`) also disables the elastic bounce *within* the
+     scroller itself, not just the chain to the parent. With a fixed overlay
+     panel, the bounce moved the page while the panel stayed still. */
+  overscroll-behavior: none;
+}
+/* Shared OverlayScrollbars theme (applied via the `theme: "os-theme-macrotide"`
+   option). Used by `.ra-main` (App.tsx) and Modal.Body, and reusable by a future
+   <ScrollArea>. Native-macOS / Spotify feel: a chunky ~7px rounded thumb in an
+   11px track region, translucent (~55% of var(--muted-2)) at rest, growing more
+   opaque (var(--muted) 80/90%) on hover/active, empty track, auto-hiding when
+   idle. The compound `.os-scrollbar.os-theme-macrotide` selector (specificity
+   0,2,0) is required to beat overlayscrollbars.css's own `.os-scrollbar` defaults
+   (0,1,0), which the JS bundle injects AFTER globals.css. */
+.os-scrollbar.os-theme-macrotide {
+  --os-size: 11px;
+  --os-padding-perpendicular: 2px;
+  --os-padding-axis: 2px;
+  --os-track-bg: transparent;
+  --os-track-bg-hover: transparent;
+  --os-track-bg-active: transparent;
+  --os-track-border-radius: 6px;
+  --os-handle-border-radius: 4px;
+  --os-handle-bg: color-mix(in srgb, var(--muted-2) 55%, transparent);
+  --os-handle-bg-hover: color-mix(in srgb, var(--muted) 80%, transparent);
+  --os-handle-bg-active: color-mix(in srgb, var(--muted) 90%, transparent);
+  --os-handle-min-size: 33px;
+}
+/* Banner sits outside .ra-main, so sticky descendants don't need the
+   banner offset on their `top` (they'd double-offset otherwise). The desktop
+   topbar is taller (18px padding-top vs 14px), so bump --topbar-h to 54px
+   here; both the topbar height and the sub-tab `top` read from it, so they
+   stay flush with the same 2px overlap as mobile. */
+.ra-main {
+  --topbar-h: 54px;
+}
+.ra-main .topbar {
+  top: 0;
+}
+.ra-main .sub-tabs,
+.ra-main .portfolio-switch {
+  top: calc(var(--topbar-h) - 2px);
+}
+
+.ra-main-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Screen host + mount-point wrappers (App.tsx). The single persistent
+   .screen-host node is re-parented between the mobile .screen-slot (inside
+   .app-frame) and the wide mount-point (.ra-main-inner) so the screen subtree
+   — and any open modal it owns — survives a viewport-breakpoint remount. Both
+   wrappers are layout-transparent: full-width, no box of their own, so the
+   screen lays out exactly as it did when it was a direct child of .app-frame /
+   .ra-main-inner. They are NOT scroll/positioning ancestors — sticky topbars
+   still resolve against the window (mobile) / .ra-main OverlayScrollbars
+   viewport (wide), unchanged. */
+.screen-slot,
+.screen-host {
+  display: block;
+  width: 100%;
+}
+/* The persistent Advisor chat host (App.tsx) and its mobile mount-point are
+   layout-transparent (display:contents), so the chat shell lays out exactly as a
+   direct child of its mount-point's parent — the mobile .screen-host or the wide
+   .ra-chat-body — in either shell, after the host is re-parented (#225). */
+.chat-host,
+.chat-mount {
+  display: contents;
+}
+.ra-shell.desktop .ra-main-inner {
+  max-width: 880px;
+}
+
+/* Each reused screen renders its own topbar (with brand) inside .ra-main,
+   matching the mobile pattern now that the left rail no longer carries one. */
+.ra-main .topbar {
+  padding-top: 18px;
+}
+/* Hide the per-screen avatar pill since left rail has account control */
+.ra-main .topbar .avatar {
+  display: none;
+}
+/* Remove bottom padding that was reserved for the mobile bottom-nav */
+.ra-main .screen {
+  padding-bottom: 24px;
+}
+.ra-main .app-frame {
+  padding-bottom: 24px;
+}
+
+/* ----- Apps panel (right) ----- */
+.ra-panel {
+  background: var(--paper);
+  border-left: 1px solid var(--line-soft);
+  height: calc(100dvh - var(--demo-banner-h));
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 20;
+  transition: border-left-color 0.15s ease;
+}
+
+/* Drag-to-resize handle (issue #95): an invisible bar over the panel's left
+   edge. Sits fully INSIDE the panel — `.ra-panel` is `overflow: hidden`, which
+   clips (and so kills the hit area of) anything straddling the border — but an
+   8px target flush at the edge stays entirely hittable. The visible affordance
+   is a 2px line ON the divider: the panel's own 1px border lights up (below)
+   plus a 1px inner line flush against it, so it reads as one line on the edge,
+   not a second line set in from it. */
+.ra-panel-resize {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 30;
+  touch-action: none;
+}
+.ra-panel-resize::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 1px;
+  background: transparent;
+  transition: background 0.15s ease;
+}
+.ra-panel-resize:focus-visible {
+  outline: none; /* the lit divider is the focus indicator (below) */
+}
+/* Light up the inner 1px (the part inside the clip) on the same states... */
+.ra-panel-resize:hover::before {
+  background: var(--line);
+}
+.ra-panel-resize:active::before,
+.ra-panel-resize:focus-visible::before {
+  background: var(--accent);
+}
+/* ...and the panel's OWN 1px border (the part on the edge) to match, via `:has`
+   so the parent reacts to the handle's state. Together = a 2px line on the
+   divider. `.ra-shell` prefix wins specificity over the tablet overlay's border.
+   Hover = quiet neutral; active drag + keyboard focus = the accent (focus needs
+   a visible indicator, and shouldn't look like a passive hover). */
+.ra-shell .ra-panel:has(.ra-panel-resize:hover) {
+  border-left-color: var(--line);
+}
+.ra-shell .ra-panel:has(.ra-panel-resize:active),
+.ra-shell .ra-panel:has(.ra-panel-resize:focus-visible) {
+  border-left-color: var(--accent);
+}
+
+/* Tablet: panel becomes an overlay anchored just inside the apps rail. Main
+   content underneath keeps its full width — no squeeze. Opens at the same 380px
+   default as desktop and is resizable via the same `--ra-panel-width` var
+   (issue #95); the JS clamp keeps it from overrunning the nav rail, and the
+   `min(...)` here is a belt-and-suspenders cap for the moment before a resize
+   re-clamps. Maximize expands it up to — but not over — the nav rail. */
+.ra-shell.tablet .ra-panel {
+  position: fixed;
+  top: var(--demo-banner-h, 0px);
+  right: 72px;
+  width: min(var(--ra-panel-width, 380px), calc(100vw - 88px - 72px));
+  height: calc(100dvh - var(--demo-banner-h, 0px));
+  z-index: 50;
+  border-left: 1px solid var(--line-soft);
+  /* Subtle separation only — no heavy elevation. */
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.06);
+  animation: slideInRight 0.22s ease-out;
+}
+/* Maximized overlay stops at the nav rail's right edge (left rail 88 + apps rail
+   72) — the same edge a full drag reaches, so the nav stays visible and is never
+   covered. Uncapped by the comfort max, so it can exceed the drag ceiling on a
+   wide tablet — mirroring how desktop Maximize fills the whole content area. */
+.ra-shell.tablet.panel-max .ra-panel {
+  width: calc(100vw - 72px - 88px);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Backdrop sits behind the overlay panel so click-outside dismisses it.
+   Rendered as a <button> for accessibility, but visually a flat layer.
+   Hidden at every other viewport via the display rules below. */
+.ra-panel-backdrop {
+  display: none;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+.ra-shell.tablet.panel-open .ra-panel-backdrop {
+  /* No dim — keeps the dashboard fully readable while the panel is open. The
+     backdrop is a click target for dismissing the panel, but it spans only the
+     MAIN area between the rails (left nav 88px, apps rail 72px) — not the rails
+     themselves — so switching panels or screens from a rail is a single click,
+     not dismiss-then-reopen. Clicking the exposed main still dismisses. */
+  display: block;
+  position: fixed;
+  top: var(--demo-banner-h, 0px);
+  right: 72px;
+  bottom: 0;
+  left: 88px;
+  background: transparent;
+  z-index: 49;
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ra-shell.tablet .ra-panel,
+  .ra-shell.tablet.panel-open .ra-panel-backdrop {
+    animation: none;
+  }
+}
+.ra-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line-soft);
+  flex-shrink: 0;
+}
+.ra-panel-title {
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ra-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--accent);
+}
+.ra-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* The column+gap layout lives on a stable inner content wrapper, not the host:
+   the desktop/tablet overlay scrollbar (see PanelScrollBody / useOverlayScrollbar)
+   re-parents the host's single child into a generated viewport, which would
+   strip a flex-gap set on the host. Carrying it here survives the restructure
+   and matches native (mobile/touch), where there's no OS. Mirrors how
+   Modal.Body carries its gap on `.modal-body-content`. The host keeps its
+   padding (OverlayScrollbars preserves host padding). */
+.ra-panel-body-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Chat panel: let ChatScreen take over the body completely */
+.ra-chat-body {
+  padding: 0;
+  gap: 0;
+}
+.ra-chat-body .topbar {
+  display: none;
+} /* hide ChatScreen's own topbar */
+.ra-chat-body .screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.ra-chat-body .chat-stream {
+  padding-bottom: 8px;
+  flex: 1;
+}
+.ra-chat-body .composer {
+  margin: 6px 12px 14px;
+}
+
+/* In-panel thread list (Option B view swap). Fills the panel body below the
+   panel header and scrolls independently. Mirrors the drawer's list spacing. */
+.ra-thread-panel {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+/* Portfolios panel */
+.ra-bucket-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+.ra-bucket-card:hover {
+  border-color: var(--line);
+  background: var(--card-soft);
+}
+/* Variant when rendered as a <button> so it doesn't inherit OS defaults. */
+.ra-bucket-card-btn {
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+}
+/* Row wrapper: drag handle + card + pencil button side-by-side, sharing the
+   visual selection. */
+.ra-bucket-row {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  margin-bottom: 6px;
+  /* Let the pointer drag sensor own vertical gestures on the row (matches
+     .mi-row), rather than the browser's native touch scroll. */
+  touch-action: none;
+}
+/* Leading-edge drag handle. Mirrors .mi-drag-handle, sized to the card row. */
+.ra-bucket-drag-handle {
+  flex-shrink: 0;
+  background: transparent;
+  border: 0;
+  padding: 0 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  cursor: grab;
+}
+.ra-bucket-drag-handle:active {
+  cursor: grabbing;
+}
+/* Lifted while dragging — pop the whole row off the list. */
+.ra-bucket-row--dragging {
+  position: relative;
+  z-index: 2;
+}
+.ra-bucket-row--dragging .ra-bucket-card {
+  background: var(--paper);
+  border-color: var(--line-soft);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+}
+.ra-bucket-row .ra-bucket-card {
+  flex: 1;
+  margin-bottom: 0;
+}
+.ra-bucket-row[data-active="true"] .ra-bucket-card {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.ra-bucket-row[data-active="true"] .ra-bucket-icon {
+  background: var(--accent);
+  color: var(--bg);
+}
+.ra-bucket-edit {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.12s,
+    color 0.12s,
+    border-color 0.12s;
+}
+.ra-bucket-edit:hover {
+  background: var(--card-soft);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.ra-bucket-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--card-soft);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-soft);
+  flex-shrink: 0;
+}
+.ra-bucket-name {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.ra-bucket-sub {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ----- Right apps rail ----- */
+.ra-apps-rail {
+  background: var(--paper);
+  border-left: 1px solid var(--line-soft);
+  height: calc(100dvh - var(--demo-banner-h));
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 6px;
+  gap: 4px;
+  z-index: 25;
+}
+.ra-apps-rail-btn {
+  width: 60px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 4px 6px;
+  border-radius: 10px;
+  color: var(--ink-soft);
+  position: relative;
+  transition:
+    background 0.18s,
+    color 0.18s;
+}
+.ra-apps-rail-btn:hover {
+  background: var(--card-soft);
+  color: var(--ink);
+}
+.ra-apps-rail-btn[data-active="true"] {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.ra-apps-rail-btn[data-active="true"] svg {
+  color: var(--accent-ink);
+}
+.ra-apps-rail-label {
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.1;
+}
+
+/* ----- Per-viewport tweaks to reused screens ----- */
+/* The mobile shell adds 96px bottom padding for the floating nav.
+   On wide we don't have that nav, so re-claim the space. */
+@media (min-width: 700px) {
+  .ra-main .app-frame {
+    max-width: 100%;
+    border: 0;
+    box-shadow: none;
+  }
+  /* Hide the floating bottom nav if anything inside a screen renders one */
+  .ra-shell .bottom-nav {
+    display: none;
+  }
+}
+
+/* ========= Manage indicators sheet ========= */
+.mi-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  touch-action: none;
+  transition:
+    background 0.12s,
+    border-color 0.12s,
+    box-shadow 0.12s;
+}
+/* Grey wash on hover so the pointed-at row (and its remove button) stands out. */
+.mi-row:hover {
+  background: var(--card-soft);
+}
+/* Lifted while being dragged — fills white + shadow so it pops off the list. */
+.mi-row--dragging {
+  position: relative;
+  z-index: 2;
+  background: var(--paper);
+  border-color: var(--line-soft);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+}
+.mi-drag-handle {
+  cursor: grab;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.mi-drag-handle:active {
+  cursor: grabbing;
+}
+.icon-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.icon-btn:disabled:hover {
+  background: var(--paper);
+  color: var(--ink-soft);
+}
+.mi-add-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.12s,
+    border-color 0.12s;
+}
+.mi-add-chip:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+/* Combobox — the shared custom autocomplete dropdown (symbol, source, …). The
+   input keeps whatever class the caller gives it (.rec-edit input / .sheet-input);
+   this owns the relative wrapper + the styled suggestion list. Ported from the
+   original symbol field's inline styles so every dropdown looks identical. */
+.combobox {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+}
+.combobox__list {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  /* Size to the suggestion text (so long fund names are readable) instead of
+     being clamped to a narrow symbol field — but never narrower than the field,
+     and capped so it can't run off the edge. */
+  right: auto;
+  width: max-content;
+  min-width: 100%;
+  max-width: min(340px, 80vw);
+  z-index: 80;
+  margin: 0;
+  padding: 4px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  max-height: 220px;
+  overflow-y: auto;
+}
+.combobox__list[data-up] {
+  top: auto;
+  bottom: calc(100% + 2px);
+}
+.combobox__option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 6px 8px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.combobox__option:hover,
+.combobox__option:focus-visible,
+.combobox__option[data-active] {
+  background: var(--card-soft);
+}
+/* Facet dropdown menus (Explore): taller than the symbol combobox, and the
+   scrollbar stays VISIBLE — macOS overlay scrollbars hide until scrolled, which
+   made a long menu read as clipped at the bottom. */
+.facet-menu {
+  max-height: min(320px, 45vh);
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.facet-menu::-webkit-scrollbar {
+  width: 8px;
+}
+.facet-menu::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 4px;
+  border: 2px solid var(--paper);
+}
+.facet-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+.combobox__option-ticker {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.combobox__option-name {
+  font-size: 11px;
+  color: var(--muted);
+}
+.combobox__option-tag {
+  margin-left: 6px;
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+}
+.combobox__option-tag[data-tone="muted"] {
+  color: var(--muted);
+}
+.combobox__option-tag[data-tone="accent"] {
+  color: var(--accent-ink);
+}
+
+/* RecordSheet — the unified Add modal (composes native primitives). */
+.rec-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.rec-field__label {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.rec-intake__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.rec-error {
+  font-size: 12px;
+  color: var(--loss);
+  padding: 2px 0;
+}
+.rec-ask {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--amber) 12%, transparent);
+}
+.rec-intake {
+  border-radius: 10px;
+  transition: box-shadow 0.12s ease;
+}
+.rec-intake[data-drag] {
+  box-shadow: 0 0 0 2px var(--accent);
+}
+/* Investment | Cash family selector (#149) — pill segment, mirrors .portfolio-switch. */
+.rec-segment {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.rec-segment button {
+  flex: 1;
+  background: var(--card-soft);
+  border: 1px solid var(--line-soft);
+  color: var(--ink-soft);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.rec-segment button[data-active="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: transparent;
+}
+/* Compact variant — the family toggle in the modal header's top-right action slot. */
+.rec-segment--compact {
+  margin-bottom: 0;
+  gap: 3px;
+}
+.rec-segment--compact button {
+  flex: 0 0 auto;
+  padding: 5px 11px;
+  font-size: 12px;
+}
+/* "+ Add" split button (#149) — the Material 3 split-button structure adapted to our
+   accent/ghost tokens: TWO buttons with a small gap (not a shared border). OUTER corners
+   use the app's button radius (--r-sm, not a full pill — full pills are reserved for the
+   toggle controls) and the facing INNER corners a tighter radius — the M3 split-button
+   asymmetry, kept in the app's shape language. A static down-chevron (no rotation). The
+   popover reuses .kebab__menu (background + shadow + outside-click). */
+.add-split {
+  display: inline-flex;
+  gap: 2px;
+}
+.add-split .btn.ghost {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+/* Two-class selectors so these beat .btn.sm (padding + border-radius) — see the border
+   fix above; a single .add-split__* class loses the specificity tie to .btn.sm. */
+.add-split .add-split__main {
+  gap: 4px;
+  border-radius: var(--r-sm) 2px 2px var(--r-sm);
+}
+.add-split .add-split__caret {
+  border-radius: 2px var(--r-sm) var(--r-sm) 2px;
+  padding: 7px 8px;
+}
+
+/* One-click broker import panel */
+.broker-import__toggle {
+  margin-top: 8px;
+}
+.broker-import {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--fg) 4%, transparent);
+  font-size: 12.5px;
+}
+.broker-import__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.broker-import__steps {
+  margin: 0 0 10px;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--muted);
+}
+.broker-import__bm {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 7px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: grab;
+}
+.broker-import__status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+/* Spin utility for "in-progress" icons (e.g. the waiting-for-sync loader). */
+@keyframes mt-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.mt-spin {
+  animation: mt-spin 0.9s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mt-spin {
+    animation: none;
+  }
+}
+.broker-import__status--ok {
+  color: var(--gain, #0a7d2c);
+}
+.broker-import__status--bad {
+  color: var(--loss);
+}
+.btn.xs {
+  padding: 2px 8px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* Broker-import "connect" call-to-action banner (top of the Add sheet) */
+.import-cta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  padding: 4px 6px 4px 12px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.import-cta__main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  padding: 6px 0;
+  background: none;
+  border: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.import-cta__x {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--r-sm);
+  background: none;
+  border: none;
+  color: inherit;
+  opacity: 0.7;
+  cursor: pointer;
+}
+.import-cta__x:hover {
+  opacity: 1;
+}
+.import-cta__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1px;
+}
+.import-cta__text strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+.import-cta__text span {
+  font-size: 11.5px;
+  opacity: 0.85;
+}
+
+/* Broker-import stepper (ConnectBrokerScreen.tsx) */
+.import-steps {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.import-step {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  padding: 6px 0;
+}
+.import-step__marker {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--r-full);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--card-soft);
+  color: var(--muted);
+  border: 1px solid var(--line-soft);
+}
+.import-step--active .import-step__marker {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  border-color: transparent;
+}
+.import-step--done .import-step__marker {
+  background: var(--gain, #0a7d2c);
+  color: #fff;
+  border-color: transparent;
+}
+.import-step__title {
+  font-size: 13px;
+  font-weight: 500;
+  padding-top: 3px;
+  /* The title is a <button> (clickable to jump steps) — inherit the app text
+     color so the todo-muted rule below still applies. */
+  color: inherit;
+}
+.import-step--todo .import-step__title {
+  color: var(--muted);
+}
+.import-step__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 8px;
+}
+.import-step__body > .import-hint,
+.import-step__body > .import-note,
+.import-step__body > .import-app {
+  align-self: stretch;
+}
+.import-hint {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.import-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+.import-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  min-height: 44px;
+  padding: 8px 10px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line-soft);
+  background: var(--paper);
+  text-decoration: none;
+  color: inherit;
+}
+.import-app strong {
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.import-app span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.import-app--rec {
+  border-color: var(--accent);
+}
+/* Per-broker rows on the wizard's final step: status dot + name + Open. */
+.broker-rows {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.broker-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+}
+.broker-row + .broker-row {
+  border-top: 1px solid var(--line-soft);
+}
+.broker-row__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.broker-row__dot--synced {
+  background: var(--gain);
+}
+.broker-row__dot--idle {
+  background: transparent;
+  border: 1.5px solid var(--muted);
+}
+.broker-row__main {
+  flex: 1;
+  min-width: 0;
+}
+.broker-row__name {
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.broker-row__status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+.import-actions {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.import-qr-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  padding: 12px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line-soft);
+  background: var(--card-soft);
+}
+.import-qr {
+  border-radius: var(--r-sm);
+  background: #fff;
+}
+
+/* Compact white-background select matching the Add sheet's Type field
+   (.rec-edit select) — keeps the native dropdown arrow, sized like a `.btn.sm`. */
+.mt-select {
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 7px 9px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--ink);
+  outline: none;
+  max-width: 200px;
+}
+.mt-select:focus {
+  border-color: var(--accent);
+}
+.mt-select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.rec-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 0;
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* Per-type help line under the inline editor — an (i) icon + a plain-English
+   one-liner for the selected Type. */
+.rec-type-help {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  /* Grow to fill the row up to the action buttons, instead of capping early and
+     leaving dead space to the right. */
+  flex: 1;
+  min-width: 0;
+  margin-right: 10px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.rec-type-help svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+/* On a narrow sheet the type explanation gets its own line ABOVE the action
+   buttons, instead of being squeezed onto the same row. */
+@media (max-width: 600px) {
+  .ledger-edit-actions {
+    flex-wrap: wrap;
+  }
+  .ledger-edit-actions .rec-type-help {
+    flex-basis: 100%;
+    margin: 0 0 8px;
+  }
+}
+
+/* Full-width "add a row" affordance — a dashed slot so the visual matches its
+   (full-width) click target, instead of a small centered text link. */
+.rec-add-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 4px;
+  padding: 9px 12px;
+  border: 1px dashed var(--line);
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  cursor: pointer;
+  transition:
+    border-color 0.12s,
+    color 0.12s;
+}
+.rec-add-row:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+/* Quantity field with a units ↔ ฿ switcher (components/ui/QtyInput). The box chrome
+   lives on the wrapper so a currency prefix sits INSIDE it as a flex item with
+   a consistent gap to the number; the input itself is borderless. */
+.qty-input {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 0 9px;
+}
+.qty-input:focus-within {
+  border-color: var(--accent);
+}
+.rec-edit .qty-input__input {
+  flex: 1;
+  width: auto;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  padding: 7px 0;
+  padding-right: 42px; /* clear the absolute units/total toggle on the right */
+}
+.rec-edit .qty-input__input:focus {
+  border: 0;
+}
+.qty-input__toggle {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.qty-input__toggle:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+/* Kebab (⋮) action menu (components/ui/KebabMenu). */
+.kebab {
+  position: relative;
+}
+.kebab__menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 90;
+  min-width: 160px;
+  padding: 4px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 9px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+}
+.kebab__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.kebab__item:hover {
+  background: var(--card-soft);
+}
+.kebab__item[data-danger] {
+  color: var(--loss);
+}
+/* Menu header + footnote (e.g. the "Return basis" return-mode menu, #149). */
+/* Head top + note bottom match the items' 14px side inset (menu 4px + 10px) so the
+   menu's content is equally padded on all four sides. */
+.kebab__head {
+  padding: 10px 10px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.kebab__note {
+  margin: 4px 10px 10px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+  white-space: normal;
+  max-width: 200px;
+}
+/* A radio-style menu item: leading check, hidden until that option is active so
+   labels stay aligned. */
+.kebab__item--check {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.kebab__item--check svg {
+  visibility: hidden;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.kebab__item--check[data-active="true"] svg {
+  visibility: visible;
+}
+
+/* Paste box as an input group: a borderless textarea with an action bar pinned
+   at its bottom (the "Apply" button), so Apply reads as the box's own action
+   without floating over the text you typed. */
+.rec-paste {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background: var(--card-soft);
+  overflow: hidden;
+}
+.rec-paste:focus-within {
+  border-color: var(--accent);
+  background: var(--paper);
+}
+.rec-paste textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  /* User can drag to resize; typing scrolls inside, so the box height stays put. */
+  resize: vertical;
+  padding: 12px 14px 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink);
+  /* Tall enough that the multi-line placeholder shows without scrolling. Same on
+     every device. */
+  min-height: 150px;
+}
+.rec-paste textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+/* RecordSheet inline editor grid — column order Type · Date · Symbol · Units ·
+   Price · Fee · Amount, with the date given real width so the row stays one line
+   on desktop. Stacks to two columns on a narrow viewport / bottom sheet. */
+.rec-edit {
+  display: grid;
+  gap: 6px;
+  /* Each cell stacks a small caption over its control (so a field stays legible
+     when it's pre-filled — from a paste, an import, or the Advisor); align the
+     captions in a row at the top. */
+  align-items: start;
+  /* Type + Date stay fixed (their controls have an intrinsic width); the rest
+     flex so the row fills the modal's full width on any desktop size without
+     any single field stretching too far. Symbol is held to a smaller share so
+     the number fields (units/total, price) get enough room to read a figure
+     you've typed — the symbol code is short, the numbers aren't. */
+  grid-template-columns:
+    98px 124px minmax(104px, 1.2fr) minmax(96px, 1.3fr)
+    minmax(82px, 1.05fr) minmax(70px, 0.9fr);
+}
+/* One field cell: a caption above its control. */
+.rec-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.rec-label {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--muted);
+  padding-left: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* The muted "· optional" suffix — a quiet cue, not a warning. */
+.rec-opt {
+  color: var(--muted-2);
+  font-weight: 400;
+}
+/* Currency as an in-input text PREFIX at the left edge — like "$" before a
+   figure, NOT a bordered badge. The wrapper carries the box chrome and lays the prefix
+   + borderless input out in a flex row, so the number starts a CONSISTENT gap after
+   the prefix whatever its width (plain "USD" or "USD ⌄"). */
+.amt-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 0 9px;
+}
+.amt-field:focus-within {
+  border-color: var(--accent);
+}
+.rec-edit .amt-field__input {
+  flex: 1;
+  width: auto;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  padding: 7px 0;
+}
+.rec-edit .amt-field__input:focus {
+  border: 0;
+}
+.cur-prefix {
+  flex: none;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  /* Same weight for ฿ and $: a step below the black value, but clearly darker
+     than the faded placeholder so the prefix never reads as one. */
+  color: var(--ink-soft);
+}
+button.cur-prefix {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  /* Match the plain-text (span) prefix exactly — NOT `font: inherit`, which would
+     reset to the larger row font and make the cash toggle bigger than the inferred
+     investment prefix. */
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+}
+.cur-prefix--toggle:hover {
+  color: var(--ink);
+}
+/* Trade-date FX conversion as ONE muted line just under the amount box — the ฿
+   equivalent + an "adjust" link that reveals the reference rate inline. Reads as a
+   helper on the amount, not a field of its own. */
+.rec-fx {
+  display: block;
+  margin-top: 3px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--muted);
+  /* The expanded editor (฿ [rate] · Reset · Done) is wider than a narrow money column
+     (e.g. History's Units cell), so keep it on ONE line and let it spill into the free
+     space to the right (the row's other cells are empty below their boxes) rather than
+     wrapping "Done" onto a second line. The card has no overflow clip, so it just shows.
+     Narrow / stacked layouts wrap it back (see the ≤660px container query). */
+  white-space: nowrap;
+}
+/* Minimal inline rate editor — a borderless underlined number, not a full field.
+   Wide enough for a full rate (e.g. 33.2203) without clipping. */
+.rec-edit .rec-fx__rate {
+  width: 62px;
+  margin: 0 1px;
+  padding: 0 1px;
+  border: 0;
+  border-bottom: 1px solid var(--accent);
+  border-radius: 0;
+  background: none;
+  font-size: 11.5px;
+  text-align: center;
+}
+/* "adjust" / "done" / "reset" are the app's standard inline action — plain `.link-btn`
+   (bold, inherits the muted line color, no underline, no hover color change) with a
+   chevron, exactly like the "Exclude cash" link. Only spacing is added here. */
+.rec-fx__adjust {
+  margin-left: 6px;
+}
+/* "Done" confirms the rate — the primary action of the inline editor, so it reads in the
+   accent (green), while "Adjust" / "Reset" stay muted. */
+.rec-fx .rec-fx__done {
+  color: var(--accent);
+}
+/* In the History editor's flat grid, wrap a money box + its FX line so the line sits
+   directly under the field it belongs to (the first money field), not adrift below the
+   whole row. */
+.rec-money {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.rec-money .rec-fx {
+  /* Spacing comes from the column gap — don't double it. */
+  margin-top: 0;
+}
+/* A money field's estimate/optional cue lives on its border. With a currency prefix the
+   box border sits on the `.amt-field` wrapper and the input goes borderless — so carry
+   the dashed/amber cue on the wrapper (via :has) and the prefix never fights it. */
+.rec-edit .amt-field input[data-optional],
+.rec-edit .amt-field input[data-estimated] {
+  border: 0;
+}
+.rec-edit .amt-field:has(input[data-optional]) {
+  border-style: dashed;
+  border-color: var(--line);
+}
+.rec-edit .amt-field:has(input[data-estimated]) {
+  border-style: dashed;
+  border-color: var(--amber);
+}
+.rec-edit .amt-field:has(input[data-optional]):focus-within,
+.rec-edit .amt-field:has(input[data-estimated]):focus-within {
+  border-color: var(--accent);
+}
+/* Amount-only kinds (dividend / fee): Type · Date · Symbol · ฿ amount. */
+.rec-edit.is-flow {
+  grid-template-columns: 98px 124px minmax(120px, 1.3fr) minmax(120px, 1.2fr);
+}
+/* Balance row: Type · Date · Symbol · Units · Avg cost · Current price. Symbol
+   gives up a little width so the units/total field reads its figure clearly. */
+.rec-edit.is-anchor {
+  grid-template-columns: 98px 124px minmax(104px, 1.15fr) minmax(98px, 1.3fr) minmax(86px, 1fr) minmax(
+      96px,
+      1.05fr
+    );
+}
+.rec-edit input,
+.rec-edit select {
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 7px 9px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--ink);
+  outline: none;
+  min-width: 0;
+  width: 100%;
+}
+.rec-edit input:focus,
+.rec-edit select:focus {
+  border-color: var(--accent);
+}
+.rec-edit input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 0;
+}
+.rec-edit input[type="date"]::-webkit-date-and-time-value {
+  margin: 0;
+  text-align: left;
+  line-height: normal;
+}
+/* An optional field (avg cost, current price, fee): a dashed border is the quiet
+   "you can skip this" cue — but a value you DO type reads as a normal fact (the
+   caption already says "· optional"), so don't mute the text or hollow the field. */
+.rec-edit input[data-optional] {
+  border-style: dashed;
+  border-color: var(--line);
+}
+.rec-edit input[data-optional]::placeholder {
+  color: var(--muted-2);
+}
+/* A pre-filled figure that was DERIVED from the value (not read off the source) —
+   dashed + amber tint so the user knows it's an estimate to verify, not a fact. */
+.rec-edit input[data-estimated] {
+  border-style: dashed;
+  border-color: var(--amber);
+  color: var(--muted);
+}
+.rec-edit input[data-estimated]:focus {
+  border-color: var(--accent);
+}
+/* When the editor card itself is too narrow to hold the one-line grid (a narrow
+   modal, or the History column with the sidebar open), stack to two columns —
+   driven by the card's width, not the viewport. */
+@container (max-width: 660px) {
+  .rec-edit,
+  .rec-edit.is-anchor,
+  .rec-edit.is-flow {
+    grid-template-columns: 1fr 1fr;
+  }
+  /* Stacked / narrow: no free space to spill into, so let the FX line wrap again. */
+  .rec-fx {
+    white-space: normal;
+  }
+}
+
+/* ── Loading skeletons + boot shell ─────────────────────────────────────────
+   `.skeleton` is the app-wide shimmer placeholder (components/ui/Skeleton.tsx
+   and chart fallbacks). `.app-boot` paints while the client bundle downloads
+   (the dynamic() loading shell in components/ClientApp.tsx). */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--card-soft);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, var(--line-soft), transparent);
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.app-boot {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+}
+.app-boot::after {
+  content: "";
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  animation: app-boot-spin 0.8s linear infinite;
+}
+@keyframes app-boot-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after,
+  .app-boot::after {
+    animation: none;
+  }
+}

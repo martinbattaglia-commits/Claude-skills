@@ -1,0 +1,1 @@
+ALTER TABLE `fund_catalog` ADD `proj_retail_type` text;

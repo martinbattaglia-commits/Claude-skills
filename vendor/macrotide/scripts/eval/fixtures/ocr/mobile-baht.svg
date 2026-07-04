@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="2070" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1080" height="2070" fill="#f8f8f9"/>
+  <text x="36" y="44" font-size="26" fill="#3a3d43">9:41</text>
+  <text x="1044" y="44" font-size="24" fill="#3a3d43" text-anchor="end">● ▮▮▮ 82%</text>
+  <circle cx="58" cy="106" r="16" fill="#10a86b"/>
+  <text x="86" y="118" font-size="40" font-weight="700" fill="#0a0a0b">Holdings</text>
+  <text x="1044" y="116" font-size="28" font-weight="600" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">บัญชี 087-512</text>
+  <text x="44" y="186" font-size="30" font-weight="600" fill="#3a3d43" font-family="Thonburi, sans-serif">มูลค่าพอร์ตรวม</text>
+  <text x="44" y="248" font-size="48" font-weight="700" fill="#0a0a0b">฿871,609.95</text>
+  <text x="1044" y="248" font-size="44" font-weight="700" fill="#10a86b" text-anchor="end">฿21,609.95</text>
+  <text x="44" y="288" font-size="26" fill="#7e828a" font-family="Thonburi, sans-serif">ยอดเงินลงทุน ฿850,000.00</text>
+  <text x="1044" y="288" font-size="26" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">กำไร / ขาดทุน</text>
+  <line x1="44" y1="332" x2="1036" y2="332" stroke="#e6e7ea" stroke-width="2"/>
+  <text x="44" y="420" font-size="30" font-weight="700" fill="#0a0a0b" font-family="Thonburi, sans-serif">RMF</text>
+  <text x="1036" y="420" font-size="26" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">2 กองทุน</text>
+  <rect x="36" y="448" width="1008" height="160" rx="16" fill="#ffffff" stroke="#e6e7ea" stroke-width="1.5"/>
+  <text x="68" y="500" font-size="34" font-weight="700" fill="#0a0a0b">KGOLDRMF</text>
+  <text x="1012" y="500" font-size="32" font-weight="700" fill="#10a86b" text-anchor="end">+12.28%  ›</text>
+  <text x="68"  y="564" font-size="32" font-weight="700" fill="#0a0a0b">฿150,000.00</text>
+  <text x="402" y="564" font-size="32" font-weight="700" fill="#0a0a0b">฿168,420.55</text>
+  <text x="1012" y="564" font-size="32" font-weight="700" fill="#10a86b" text-anchor="end">฿18,420.55</text>
+  <text x="68"  y="596" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">ยอดเงินลงทุน</text>
+  <text x="402" y="596" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">มูลค่าปัจจุบัน</text>
+  <text x="1012" y="596" font-size="22" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">กำไร / ขาดทุน</text>
+  <rect x="36" y="626" width="1008" height="160" rx="16" fill="#ffffff" stroke="#e6e7ea" stroke-width="1.5"/>
+  <text x="68" y="678" font-size="34" font-weight="700" fill="#0a0a0b">SCBSP500RMF</text>
+  <text x="1012" y="678" font-size="32" font-weight="700" fill="#d14545" text-anchor="end">-7.29%  ›</text>
+  <text x="68"  y="742" font-size="32" font-weight="700" fill="#0a0a0b">฿250,000.00</text>
+  <text x="402" y="742" font-size="32" font-weight="700" fill="#0a0a0b">฿231,780.40</text>
+  <text x="1012" y="742" font-size="32" font-weight="700" fill="#d14545" text-anchor="end">(฿18,219.60)</text>
+  <text x="68"  y="774" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">ยอดเงินลงทุน</text>
+  <text x="402" y="774" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">มูลค่าปัจจุบัน</text>
+  <text x="1012" y="774" font-size="22" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">กำไร / ขาดทุน</text>
+  <text x="44" y="832" font-size="30" font-weight="700" fill="#0a0a0b" font-family="Thonburi, sans-serif">SSF</text>
+  <text x="1036" y="832" font-size="26" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">2 กองทุน</text>
+  <rect x="36" y="860" width="1008" height="160" rx="16" fill="#ffffff" stroke="#e6e7ea" stroke-width="1.5"/>
+  <text x="68" y="912" font-size="34" font-weight="700" fill="#0a0a0b">KUSASSF</text>
+  <text x="1012" y="912" font-size="32" font-weight="700" fill="#10a86b" text-anchor="end">+12.34%  ›</text>
+  <text x="68"  y="976" font-size="32" font-weight="700" fill="#0a0a0b">฿100,000.00</text>
+  <text x="402" y="976" font-size="32" font-weight="700" fill="#0a0a0b">฿112,340.10</text>
+  <text x="1012" y="976" font-size="32" font-weight="700" fill="#10a86b" text-anchor="end">฿12,340.10</text>
+  <text x="68"  y="1008" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">ยอดเงินลงทุน</text>
+  <text x="402" y="1008" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">มูลค่าปัจจุบัน</text>
+  <text x="1012" y="1008" font-size="22" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">กำไร / ขาดทุน</text>
+  <rect x="36" y="1038" width="1008" height="160" rx="16" fill="#ffffff" stroke="#e6e7ea" stroke-width="1.5"/>
+  <text x="68" y="1090" font-size="34" font-weight="700" fill="#0a0a0b">SCBSET50SSF</text>
+  <text x="1012" y="1090" font-size="32" font-weight="700" fill="#d14545" text-anchor="end">-6.86%  ›</text>
+  <text x="68"  y="1154" font-size="32" font-weight="700" fill="#0a0a0b">฿80,000.00</text>
+  <text x="402" y="1154" font-size="32" font-weight="700" fill="#0a0a0b">฿74,512.80</text>
+  <text x="1012" y="1154" font-size="32" font-weight="700" fill="#d14545" text-anchor="end">(฿5,487.20)</text>
+  <text x="68"  y="1186" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">ยอดเงินลงทุน</text>
+  <text x="402" y="1186" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">มูลค่าปัจจุบัน</text>
+  <text x="1012" y="1186" font-size="22" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">กำไร / ขาดทุน</text>
+  <text x="44" y="1244" font-size="30" font-weight="700" fill="#0a0a0b" font-family="Thonburi, sans-serif">ThaiESG</text>
+  <text x="1036" y="1244" font-size="26" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">1 กองทุน</text>
+  <rect x="36" y="1272" width="1008" height="160" rx="16" fill="#ffffff" stroke="#e6e7ea" stroke-width="1.5"/>
+  <text x="68" y="1324" font-size="34" font-weight="700" fill="#0a0a0b">K-TESG</text>
+  <text x="1012" y="1324" font-size="32" font-weight="700" fill="#10a86b" text-anchor="end">+6.51%  ›</text>
+  <text x="68"  y="1388" font-size="32" font-weight="700" fill="#0a0a0b">฿60,000.00</text>
+  <text x="402" y="1388" font-size="32" font-weight="700" fill="#0a0a0b">฿63,905.25</text>
+  <text x="1012" y="1388" font-size="32" font-weight="700" fill="#10a86b" text-anchor="end">฿3,905.25</text>
+  <text x="68"  y="1420" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">ยอดเงินลงทุน</text>
+  <text x="402" y="1420" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">มูลค่าปัจจุบัน</text>
+  <text x="1012" y="1420" font-size="22" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">กำไร / ขาดทุน</text>
+  <text x="44" y="1478" font-size="30" font-weight="700" fill="#0a0a0b" font-family="Thonburi, sans-serif">กองทุนรวมทั่วไป</text>
+  <text x="1036" y="1478" font-size="26" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">2 กองทุน</text>
+  <rect x="36" y="1506" width="1008" height="160" rx="16" fill="#ffffff" stroke="#e6e7ea" stroke-width="1.5"/>
+  <text x="68" y="1558" font-size="34" font-weight="700" fill="#0a0a0b">TISCOMS</text>
+  <text x="1012" y="1558" font-size="32" font-weight="700" fill="#10a86b" text-anchor="end">+11.85%  ›</text>
+  <text x="68"  y="1622" font-size="32" font-weight="700" fill="#0a0a0b">฿120,000.00</text>
+  <text x="402" y="1622" font-size="32" font-weight="700" fill="#0a0a0b">฿134,220.70</text>
+  <text x="1012" y="1622" font-size="32" font-weight="700" fill="#10a86b" text-anchor="end">฿14,220.70</text>
+  <text x="68"  y="1654" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">ยอดเงินลงทุน</text>
+  <text x="402" y="1654" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">มูลค่าปัจจุบัน</text>
+  <text x="1012" y="1654" font-size="22" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">กำไร / ขาดทุน</text>
+  <rect x="36" y="1684" width="1008" height="160" rx="16" fill="#ffffff" stroke="#e6e7ea" stroke-width="1.5"/>
+  <text x="68" y="1736" font-size="34" font-weight="700" fill="#0a0a0b">K-USA-A(A)</text>
+  <text x="1012" y="1736" font-size="32" font-weight="700" fill="#d14545" text-anchor="end">-3.97%  ›</text>
+  <text x="68"  y="1800" font-size="32" font-weight="700" fill="#0a0a0b">฿90,000.00</text>
+  <text x="402" y="1800" font-size="32" font-weight="700" fill="#0a0a0b">฿86,430.15</text>
+  <text x="1012" y="1800" font-size="32" font-weight="700" fill="#d14545" text-anchor="end">(฿3,569.85)</text>
+  <text x="68"  y="1832" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">ยอดเงินลงทุน</text>
+  <text x="402" y="1832" font-size="22" fill="#7e828a" font-family="Thonburi, sans-serif">มูลค่าปัจจุบัน</text>
+  <text x="1012" y="1832" font-size="22" fill="#7e828a" text-anchor="end" font-family="Thonburi, sans-serif">กำไร / ขาดทุน</text>
+  <line x1="0" y1="1950" x2="1080" y2="1950" stroke="#e6e7ea" stroke-width="2"/>
+  <text x="120" y="2006" font-size="24" fill="#10a86b" text-anchor="middle" font-family="Thonburi, sans-serif">พอร์ต</text>
+  <text x="360" y="2006" font-size="24" fill="#a8acb2" text-anchor="middle" font-family="Thonburi, sans-serif">สำรวจ</text>
+  <text x="600" y="2006" font-size="24" fill="#a8acb2" text-anchor="middle" font-family="Thonburi, sans-serif">ที่ปรึกษา</text>
+  <text x="840" y="2006" font-size="24" fill="#a8acb2" text-anchor="middle" font-family="Thonburi, sans-serif">ตลาด</text>
+  <text x="1000" y="2006" font-size="30" fill="#a8acb2" text-anchor="middle">⌕</text>
+</svg>

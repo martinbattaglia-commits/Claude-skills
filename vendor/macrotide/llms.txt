@@ -1,0 +1,59 @@
+# Macrotide
+
+> An open-source AI investment companion for Thai index investors. A single
+> Next.js process (App Router, React 19, TypeScript) over a local SQLite file
+> (Drizzle ORM), with passkey auth (better-auth), an "Advisor" chat built on the
+> Vercel AI SDK via OpenRouter, and live market data. Personal-use experiment;
+> not investment advice.
+
+This file is a curated map for LLMs and coding agents. Read the linked docs
+on demand rather than crawling the whole repo. Paths are relative to the repo
+root so they resolve when browsing the source.
+
+## Start here
+
+- [Root README](./README.md): What the project is, tech stack, quick start, and the **Features** list (shipped capabilities).
+- [AGENTS.md](./AGENTS.md): Rules for AI agents — DB routing, secrets, product copy. Read before changing code.
+- [Docs index](./docs/README.md): The L0/L1 map of all documentation, organized by Diátaxis mode.
+
+## Documentation
+
+- [Product direction](./docs/explanation/product-direction.md): Why Macrotide exists — north star, personas, the Learn → Analyze → Research → Select loop, index-purist stance, success signals.
+- [Getting started](./docs/tutorials/getting-started.md): Guided first run — clone, demo, first holding, first chat.
+- [Local development](./docs/how-to/local-development.md): Env setup, npm scripts, seeding, tests, pre-commit hook.
+- [Import a portfolio](./docs/how-to/import-a-portfolio.md): CSV, image OCR, and manual entry.
+- [Add a broker connector](./docs/how-to/add-a-broker-connector.md): Write a connector manifest (data-only, with a response `shape`) to support a new broker — no app code.
+- [Deploy](./docs/how-to/deploy.md): Single-VM (Caddy/systemd) and tailnet deployment.
+- [Architecture](./docs/explanation/architecture.md): System shape, request lifecycle, demo/owner DB routing, where everything lives.
+- [Balances and History](./docs/explanation/balances-and-history.md): How a Balance and a trade fit together — the one-ledger model, cost-basis-delta math with worked examples, self-healing edits, custom-asset pricing, and the History/entry/Balance vocabulary.
+- [Portfolio chart](./docs/explanation/portfolio-chart.md): How to read the Portfolio screen's chart — its three modes (Value = absolute wealth + contribution + gain wedge; Performance = a deposit-proof time-weighted return curve, benchmark at the same 0% origin, vs the money-weighted figure in the returns breakdown; Breakdown = funds-vs-cash stacked area, share-of-100% or absolute ฿), the rule that only the mode changes the line's meaning (period + scale never do), the auto-fit non-zero-based y-axis ("auto-zoom"), and Linear vs Log scale (framing ⊥ scale; Log on ≥1Y, needs a positive line so it falls back to Linear otherwise). Ranges 1M/3M/YTD/1Y/5Y/All, default 1Y.
+- [Cash](./docs/explanation/cash.md): How cash is a first-class asset — the three-roles split (net worth / allocation always full, return is the choice), the GIPS boundary model, the in-transit-heuristic seam, the no-deduct rule (a buy never auto-debits cash), the Purpose earmark (Role Investable|Reserved + Label, keyed on `(bucketId, ticker)`, reserved carved out of the return symmetrically), and the Include/Exclude-cash return basis (one `cashContributionFlows` definition, `countUninvestedCash`).
+- [Design principles](./docs/explanation/design-principles.md): Secure-by-default, the "Advisor" voice, single-owner → multi-user.
+- [Portfolio health](./docs/explanation/portfolio-health.md): Why the Portfolio screen leads with a plain-language headline + named checks instead of a 0–100 grade, and how the diversification check measures underlying concentration (single-name overlap + target-relative region) honestly on partial look-through data.
+- [Market data pipeline](./docs/explanation/market-data-pipeline.md): How market.db is fed — the fund-catalog crawl (ELT: sec_raw → transform) vs the NAV/quote series cache (`getCachedSeries`, 24h TTL, depth-aware, upsert-only), the freshness (`refresh-market`) vs coverage (`prewarm-nav`) jobs, and coverage limits (Thai funds deep to SEC's ~5.4y cap; indices/FX/gold still shallow). Links out to provider/quota and schedule facts.
+- [Memory feature](./docs/explanation/memory.md): Long-term memory + chat-session lifecycle design.
+- [Advisor context model](./docs/explanation/advisor-context.md): What the Advisor knows per turn — the three context channels, the entry-point contract, and the empty-turn recovery.
+- [In-chat vision](./docs/explanation/advisor-vision.md): How the Advisor reads images you attach in chat — message flow, the dedicated `VISION_CHAT_MODEL` (free-tier invariant + caps), table-vs-card output, and ephemeral-server / browser-only image storage.
+- [Inference strategy](./docs/explanation/inference-strategy.md): How the Advisor stays smart/fast/token-efficient — model routing & tiers, prompt-cache strategy, reasoning-token policy, context loading, tool-result shaping; each lever mapped to the backlog.
+- [Decisions log](./docs/explanation/decisions/README.md): Locked decisions and the durable rules behind them (ADR-style).
+
+## Reference
+
+- [Configuration](./docs/reference/configuration.md): How config works; the canonical env-var table (single source of truth).
+- [API routes](./docs/reference/api.md): Catalog of app/api/* route handlers.
+- [Data model](./docs/reference/data-model.md): SQLite tables and relationships.
+- [Design system](./docs/reference/design-system.md): Real CSS tokens (color/radius/spacing), high-reuse classes, and shared UI components (Modal, Icon, EventLine) copied from production for building UI that matches.
+- [Auth & AI providers](./docs/reference/auth-and-providers.md): Passkeys, OpenRouter, rate limiting.
+- [Security policy](./SECURITY.md): Threat model and vulnerability reporting.
+
+## Optional
+
+- [Roadmap (GitHub Project)](https://github.com/users/Sitthinut/projects/2): Forward-looking work as issues grouped by Priority. Product intent + out-of-scope notes live in [product-direction.md](./docs/explanation/product-direction.md). For what's *done*, see the README Features list and the changelog.
+- [Changelog](./CHANGELOG.md): Notable changes per release, Keep a Changelog format.
+- [Memory-systems research](./docs/explanation/research/memory-systems.md): Prior-art survey behind the memory design.
+- [Feedback-mechanisms research](./docs/explanation/research/feedback-mechanisms.md): Prior-art survey behind feedback-by-memory (ADR 0006) — why corrections, not thumbs.
+- [Context-engineering research](./docs/explanation/research/context-engineering.md): Prior-art survey on context engineering for tool-using agents — the Advisor loop, failure modes, and recovery.
+- [LLM-platform-primitives research](./docs/explanation/research/llm-platform-primitives.md): Prior-art survey of how Anthropic/OpenAI/Gemini/OpenRouter expose tool calling, system prompts, reasoning tokens, and citations/structured output.
+- [Context-and-caching research](./docs/explanation/research/context-and-caching.md): Prior-art survey on prompt caching (cost/latency math) and context-window management / progressive context loading.
+- [Agent-evals research](./docs/explanation/research/agent-evals.md): Prior-art survey on evaluating tool-using agents — the task/harness/grader triple, deterministic vs LLM-judge graders, pass^k reliability, dead-end metrics; the evidence behind scripts/eval.
+- [Design-systems research](./docs/explanation/research/design-systems.md): Prior-art survey on keeping a design system consistent and human/AI-foolproof — design tokens (DTCG 2025.10), typed component APIs (cva, discriminated unions), lint/CI gates (Stylelint strict-value), agent guardrails (DESIGN.md, MCP, AGENTS.md), and small-team governance.

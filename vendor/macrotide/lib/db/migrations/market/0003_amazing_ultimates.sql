@@ -1,0 +1,1 @@
+ALTER TABLE `fund_quotes` ADD `deepest_range` text;

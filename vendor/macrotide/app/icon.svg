@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" width="32" height="32">
+  <title>Macrotide</title>
+  <rect width="22" height="22" rx="6" fill="#111110"></rect>
+  <path d="M 0 11 Q 5.5 5 11 11 T 22 11 L 22 16 A 6 6 0 0 1 16 22 L 6 22 A 6 6 0 0 1 0 16 Z" fill="#0AA694"></path>
+</svg>

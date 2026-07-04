@@ -1,0 +1,58 @@
+{
+  "id": "example-broker",
+  "displayName": "Example Broker",
+  "host": "orders.example-broker.com",
+  "planPath": "/api/v1/portfolios",
+  "historyPath": "/api/v1/orders/history",
+  "pendingPath": "/api/v1/orders/pending",
+  "openUrl": "https://orders.example-broker.com/orders/history",
+  "loginUrl": "https://www.example-broker.com/dashboard",
+  "sourceTag": "example-broker",
+
+  "//shape": "OPTIONAL. Maps this broker's response field paths so the generic collector/parser need no broker-specific code. Omit any field to fall back to the SDK's built-in defaults. Dot-paths read nested objects; an order FieldRef may be a single name or an array (first present wins). plan/history/pending drive the in-page collector; order/values drive the parser.",
+  "shape": {
+    "plan": {
+      "accountsPath": "data.accounts",
+      "accountCode": "account_id",
+      "accountName": "account_name",
+      "accountType": "account_type",
+      "labelPaths": ["data.customer_name", "data.email"]
+    },
+    "history": {
+      "accountParam": "account_code",
+      "cursorParam": "cursor",
+      "itemsPath": "data",
+      "nextCursorPath": "pagination.next_cursor",
+      "hasNextPath": "pagination.has_next",
+      "maxPages": 200
+    },
+    "pending": {
+      "accountParam": "account_code",
+      "itemsPath": "data"
+    },
+    "order": {
+      "type": "order_type",
+      "ticker": "fund_name",
+      "status": "status",
+      "tradeDate": "trade_date",
+      "amount": "net_transaction_amount",
+      "units": ["net_transaction_unit", "unit"],
+      "dividendAmount": ["amount", "net_transaction_amount"],
+      "ref": "ref",
+      "switch": {
+        "toTicker": "sw_to_fund",
+        "inAmount": "sw_in_net_transaction_amount",
+        "inUnits": "sw_in_net_transaction_unit"
+      }
+    },
+    "values": {
+      "success": ["SUCCESS", "COMPLETE"],
+      "cancel": ["CANCEL", "CANCELLED"],
+      "pending": ["PENDING"],
+      "buy": ["buy"],
+      "sell": ["sell"],
+      "switch": ["switch"],
+      "dividend": ["dividend"]
+    }
+  }
+}

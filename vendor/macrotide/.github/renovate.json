@@ -1,0 +1,40 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":dependencyDashboard", ":semanticCommits"],
+  "timezone": "Asia/Bangkok",
+  "schedule": ["before 6am on monday"],
+  "prConcurrentLimit": 5,
+  "platformAutomerge": true,
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "schedule": ["at any time"],
+    "automerge": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on monday"]
+  },
+  "packageRules": [
+    {
+      "description": "Auto-merge patch/minor/pin/digest once CI is green",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "description": "Group dev tooling into one PR",
+      "matchPackageNames": [
+        "typescript",
+        "simple-git-hooks",
+        "lint-staged",
+        "@biomejs/**",
+        "@types/**"
+      ],
+      "groupName": "dev-tooling"
+    },
+    {
+      "description": "Majors get their own PR for manual review (no automerge)",
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    }
+  ]
+}

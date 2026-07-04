@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="560" font-family="Helvetica, Arial, sans-serif">
+  <rect width="820" height="560" fill="#ffffff"/>
+  <text x="44" y="48" font-size="22" font-weight="700" fill="#0a0a0b">SCB US Equity Fund</text>
+  <text x="44" y="72" font-size="14" fill="#7e828a">SCBSP500-A · Foreign Equity · Risk level 6</text>
+
+  <!-- key facts strip -->
+  <line x1="44" y1="92" x2="776" y2="92" stroke="#e6e7ea"/>
+  <text x="44"  y="124" font-size="13" fill="#7e828a">TER (total expense ratio)</text>
+  <text x="44"  y="148" font-size="18" font-weight="700" fill="#0a0a0b">0.45%</text>
+  <text x="300" y="124" font-size="13" fill="#7e828a">Fund size</text>
+  <text x="300" y="148" font-size="18" font-weight="700" fill="#0a0a0b">฿12,480 M</text>
+  <text x="560" y="124" font-size="13" fill="#7e828a">Benchmark</text>
+  <text x="560" y="148" font-size="18" font-weight="700" fill="#0a0a0b">S&amp;P 500 TR</text>
+
+  <!-- returns table -->
+  <text x="44" y="196" font-size="15" font-weight="700" fill="#0a0a0b">Trailing returns</text>
+  <text x="60"  y="228" font-size="13" fill="#7e828a">1M</text>
+  <text x="220" y="228" font-size="13" fill="#7e828a">3M</text>
+  <text x="380" y="228" font-size="13" fill="#7e828a">1Y</text>
+  <text x="540" y="228" font-size="13" fill="#7e828a">3Y (p.a.)</text>
+  <text x="60"  y="252" font-size="16" font-weight="700" fill="#10a86b">+2.1%</text>
+  <text x="220" y="252" font-size="16" font-weight="700" fill="#10a86b">+5.4%</text>
+  <text x="380" y="252" font-size="16" font-weight="700" fill="#10a86b">+12.5%</text>
+  <text x="540" y="252" font-size="16" font-weight="700" fill="#10a86b">+41.0%</text>
+
+  <!-- top holdings -->
+  <text x="44" y="304" font-size="15" font-weight="700" fill="#0a0a0b">Top holdings</text>
+  <text x="60"  y="336" font-size="14" fill="#0a0a0b">Apple Inc.</text>
+  <text x="360" y="336" font-size="14" font-weight="700" fill="#0a0a0b" text-anchor="end">7.2%</text>
+  <text x="60"  y="364" font-size="14" fill="#0a0a0b">Microsoft Corp.</text>
+  <text x="360" y="364" font-size="14" font-weight="700" fill="#0a0a0b" text-anchor="end">6.8%</text>
+  <text x="60"  y="392" font-size="14" fill="#0a0a0b">NVIDIA Corp.</text>
+  <text x="360" y="392" font-size="14" font-weight="700" fill="#0a0a0b" text-anchor="end">5.9%</text>
+  <text x="60"  y="420" font-size="14" fill="#0a0a0b">Amazon.com Inc.</text>
+  <text x="360" y="420" font-size="14" font-weight="700" fill="#0a0a0b" text-anchor="end">3.7%</text>
+
+  <!-- asset allocation -->
+  <text x="440" y="304" font-size="15" font-weight="700" fill="#0a0a0b">Allocation</text>
+  <text x="456" y="336" font-size="14" fill="#0a0a0b">US equity</text>
+  <text x="776" y="336" font-size="14" font-weight="700" fill="#0a0a0b" text-anchor="end">96.5%</text>
+  <text x="456" y="364" font-size="14" fill="#0a0a0b">Cash</text>
+  <text x="776" y="364" font-size="14" font-weight="700" fill="#0a0a0b" text-anchor="end">3.5%</text>
+
+  <text x="44" y="500" font-size="12" fill="#a8acb2">As of 31 May 2026 · for illustration only</text>
+</svg>

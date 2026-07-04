@@ -1,0 +1,1 @@
+CREATE INDEX `idx_fund_share_classes_isin` ON `fund_share_classes` (`isin_code`);

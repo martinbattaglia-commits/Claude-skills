@@ -1,0 +1,1 @@
+ALTER TABLE `nav_history` ADD `net_asset` real;

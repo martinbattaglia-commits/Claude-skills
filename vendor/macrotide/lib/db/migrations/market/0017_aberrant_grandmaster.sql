@@ -1,0 +1,1 @@
+ALTER TABLE `us_securities` ADD `exposure_region` text;

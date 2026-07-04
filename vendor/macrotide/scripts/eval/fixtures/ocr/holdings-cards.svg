@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="500" font-family="Helvetica, Arial, sans-serif">
+  <rect width="760" height="500" fill="#eef0f3"/>
+  <text x="32" y="48" font-size="20" font-weight="700" fill="#1a1f2b">My Funds</text>
+  <text x="32" y="70" font-size="13" fill="#6b7280">Total value 77,005.04 THB · As of 28 May 2026</text>
+
+  <!-- card 1 (top-left) -->
+  <rect x="32"  y="92"  width="336" height="170" rx="14" fill="#ffffff"/>
+  <text x="56"  y="128" font-size="16" font-weight="700" fill="#1a1f2b">SCBSP500-A</text>
+  <text x="56"  y="148" font-size="12" fill="#9ca3af">SCB S&amp;P 500 Index</text>
+  <text x="56"  y="196" font-size="12" fill="#6b7280">Value</text>
+  <text x="344" y="196" font-size="20" font-weight="700" fill="#1a1f2b" text-anchor="end">23,074.34</text>
+  <text x="56"  y="232" font-size="12" fill="#6b7280">Allocation 30%</text>
+  <text x="344" y="232" font-size="14" fill="#15803d" text-anchor="end">+2,808.99</text>
+
+  <!-- card 2 (top-right) -->
+  <rect x="392" y="92"  width="336" height="170" rx="14" fill="#ffffff"/>
+  <text x="416" y="128" font-size="16" font-weight="700" fill="#1a1f2b">KFGBRAND-A</text>
+  <text x="416" y="148" font-size="12" fill="#9ca3af">Krungsri Global Brands A</text>
+  <text x="416" y="196" font-size="12" fill="#6b7280">Value</text>
+  <text x="704" y="196" font-size="20" font-weight="700" fill="#1a1f2b" text-anchor="end">18,717.64</text>
+  <text x="416" y="232" font-size="12" fill="#6b7280">Allocation 24%</text>
+  <text x="704" y="232" font-size="14" fill="#15803d" text-anchor="end">+1,813.18</text>
+
+  <!-- card 3 (bottom-left) -->
+  <rect x="32"  y="286" width="336" height="170" rx="14" fill="#ffffff"/>
+  <text x="56"  y="322" font-size="16" font-weight="700" fill="#1a1f2b">K-USA-A(A)</text>
+  <text x="56"  y="342" font-size="12" fill="#9ca3af">K US Equity A (A)</text>
+  <text x="56"  y="390" font-size="12" fill="#6b7280">Value</text>
+  <text x="344" y="390" font-size="20" font-weight="700" fill="#1a1f2b" text-anchor="end">14,465.00</text>
+  <text x="56"  y="426" font-size="12" fill="#6b7280">Allocation 19%</text>
+  <text x="344" y="426" font-size="14" fill="#b91c1c" text-anchor="end">-595.00</text>
+
+  <!-- card 4 (bottom-right) -->
+  <rect x="392" y="286" width="336" height="170" rx="14" fill="#ffffff"/>
+  <text x="416" y="322" font-size="16" font-weight="700" fill="#1a1f2b">TISCOMS</text>
+  <text x="416" y="342" font-size="12" fill="#9ca3af">TISCO Mid/Small Cap Equity</text>
+  <text x="416" y="390" font-size="12" fill="#6b7280">Value</text>
+  <text x="704" y="390" font-size="20" font-weight="700" fill="#1a1f2b" text-anchor="end">20,748.06</text>
+  <text x="416" y="426" font-size="12" fill="#6b7280">Allocation 27%</text>
+  <text x="704" y="426" font-size="14" fill="#b91c1c" text-anchor="end">-3,410.57</text>
+</svg>

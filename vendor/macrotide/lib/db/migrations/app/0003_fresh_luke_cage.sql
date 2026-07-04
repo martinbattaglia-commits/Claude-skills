@@ -1,0 +1,1 @@
+ALTER TABLE `usage` ADD `cost_micros` integer DEFAULT 0 NOT NULL;

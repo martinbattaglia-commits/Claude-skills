@@ -1,0 +1,1 @@
+ALTER TABLE `fund_catalog` ADD `current_ter` real;

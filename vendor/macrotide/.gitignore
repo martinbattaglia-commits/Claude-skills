@@ -1,0 +1,50 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+
+# local env files
+.env*.local
+.env
+
+# typescript
+*.tsbuildinfo
+
+# data — SQLite db, WAL/SHM sidecars, backups; all runtime-only
+/data/
+
+# scratch — working checklists, notes, throwaway files (not shared)
+/tmp/
+
+# advisor eval raw results (scripts/eval) — regenerated per run, time/cost-bound
+/eval-results/
+
+# local-only experiments — files ending in .local.ts / .local.test.ts stay
+# out of git. Useful for AI provider variants, scratch scripts, etc.
+*.local.ts
+*.local.test.ts
+
+# browser-automation screenshots (agent-browser / playwright-cli) — throwaway
+/.playwright-cli/
+
+# Claude Code agent worktrees — ephemeral, machine-local scratch
+/.claude/worktrees/
+
+# broker connector manifests — real ones carry broker identity (host, API
+# paths, brand name) and stay out of git. The committed example documents the
+# shape with placeholders only.
+/.connectors/*.json
+!/.connectors/example.json
+
+# next.js auto-generated, regenerated on every build
+next-env.d.ts
+eval-results/ocr-*.json

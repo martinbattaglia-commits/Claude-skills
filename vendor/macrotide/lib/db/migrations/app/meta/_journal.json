@@ -1,0 +1,188 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1779919438408,
+      "tag": "0000_app_baseline",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1779919455206,
+      "tag": "0001_chat_fts",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1779926599704,
+      "tag": "0002_organic_korath",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1780266366496,
+      "tag": "0003_fresh_luke_cage",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1780422964839,
+      "tag": "0004_rare_spot",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1780441543928,
+      "tag": "0005_heavy_santa_claus",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1780511111237,
+      "tag": "0006_neat_purifiers",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1780600000000,
+      "tag": "0007_unify_holdings_backfill",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1780645544228,
+      "tag": "0008_groovy_harrier",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1780645644228,
+      "tag": "0009_rename_quote_source_market",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1780724669435,
+      "tag": "0010_bouncy_daimon_hellstrom",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1780731152542,
+      "tag": "0011_majestic_trauma",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "6",
+      "when": 1780806194929,
+      "tag": "0012_volatile_azazel",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "6",
+      "when": 1780875368705,
+      "tag": "0013_petite_roughhouse",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "6",
+      "when": 1780886262022,
+      "tag": "0014_pink_wallflower",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "6",
+      "when": 1780950264378,
+      "tag": "0015_eminent_demogoblin",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "6",
+      "when": 1780995268360,
+      "tag": "0016_neat_klaw",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "6",
+      "when": 1781252284185,
+      "tag": "0017_wooden_jocasta",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "6",
+      "when": 1781724698969,
+      "tag": "0018_lively_the_order",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "6",
+      "when": 1781852028825,
+      "tag": "0019_mean_harry_osborn",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "6",
+      "when": 1782200000000,
+      "tag": "0020_chart_settings_to_local",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "6",
+      "when": 1782254597397,
+      "tag": "0021_memory_overhaul",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "6",
+      "when": 1782378348550,
+      "tag": "0022_many_inertia",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "6",
+      "when": 1782432355626,
+      "tag": "0023_uneven_sway",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "6",
+      "when": 1782443995884,
+      "tag": "0024_superb_magus",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "6",
+      "when": 1783112262638,
+      "tag": "0025_lucky_felicia_hardy",
+      "breakpoints": true
+    }
+  ]
+}

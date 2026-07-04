@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1180" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1080" height="1180" fill="#f8f8f9"/>
+  <!-- chrome -->
+  <text x="36" y="44" font-size="26" fill="#3a3d43">9:41</text>
+  <text x="1044" y="44" font-size="24" fill="#3a3d43" text-anchor="end">● ▮▮▮ 82%</text>
+  <text x="44" y="118" font-size="40" font-weight="700" fill="#0a0a0b">รายการเคลื่อนไหว</text>
+
+  <!-- date group header 1 (BE year 2569 → 2026) -->
+  <rect x="0" y="170" width="1080" height="56" fill="#eef0f3"/>
+  <text x="44" y="208" font-size="28" font-weight="700" fill="#3a3d43" font-family="Thonburi, sans-serif">15 มีนาคม 2569</text>
+
+  <!-- row: ซื้อ (buy) -->
+  <text x="44" y="288" font-size="32" font-weight="700" fill="#10a86b" font-family="Thonburi, sans-serif">ซื้อ</text>
+  <text x="160" y="288" font-size="32" font-weight="700" fill="#0a0a0b">KGOLDRMF</text>
+  <text x="1036" y="288" font-size="32" font-weight="700" fill="#0a0a0b" text-anchor="end">18,452.10</text>
+  <text x="160" y="324" font-size="24" fill="#7e828a" font-family="Thonburi, sans-serif">1,000.0000 หน่วย</text>
+  <line x1="44" y1="360" x2="1036" y2="360" stroke="#e6e7ea" stroke-width="1"/>
+
+  <!-- row: ขาย (sell) -->
+  <text x="44" y="424" font-size="32" font-weight="700" fill="#d14545" font-family="Thonburi, sans-serif">ขาย</text>
+  <text x="160" y="424" font-size="32" font-weight="700" fill="#0a0a0b">TISCOMS</text>
+  <text x="1036" y="424" font-size="32" font-weight="700" fill="#0a0a0b" text-anchor="end">11,210.50</text>
+  <text x="160" y="460" font-size="24" fill="#7e828a" font-family="Thonburi, sans-serif">500.0000 หน่วย</text>
+
+  <!-- date group header 2 -->
+  <rect x="0" y="512" width="1080" height="56" fill="#eef0f3"/>
+  <text x="44" y="550" font-size="28" font-weight="700" fill="#3a3d43" font-family="Thonburi, sans-serif">22 มกราคม 2569</text>
+
+  <!-- row: สับเปลี่ยน (switch → must split into sell-out + buy-in) -->
+  <text x="44" y="630" font-size="32" font-weight="700" fill="#d89a1f" font-family="Thonburi, sans-serif">สับเปลี่ยน</text>
+  <text x="44" y="700" font-size="28" fill="#3a3d43" font-family="Thonburi, sans-serif">ออก</text>
+  <text x="160" y="700" font-size="30" font-weight="700" fill="#0a0a0b">KUSASSF</text>
+  <text x="1036" y="700" font-size="30" font-weight="700" fill="#0a0a0b" text-anchor="end">9,500.00</text>
+  <text x="160" y="734" font-size="24" fill="#7e828a" font-family="Thonburi, sans-serif">300.0000 หน่วย</text>
+  <text x="44" y="794" font-size="28" fill="#3a3d43" font-family="Thonburi, sans-serif">เข้า</text>
+  <text x="160" y="794" font-size="30" font-weight="700" fill="#0a0a0b">SCBSET50SSF</text>
+  <text x="1036" y="794" font-size="30" font-weight="700" fill="#0a0a0b" text-anchor="end">9,500.00</text>
+  <line x1="44" y1="836" x2="1036" y2="836" stroke="#e6e7ea" stroke-width="1"/>
+
+  <!-- bottom nav -->
+  <line x1="0" y1="1080" x2="1080" y2="1080" stroke="#e6e7ea" stroke-width="2"/>
+  <text x="120" y="1136" font-size="24" fill="#a8acb2" text-anchor="middle" font-family="Thonburi, sans-serif">พอร์ต</text>
+  <text x="600" y="1136" font-size="24" fill="#10a86b" text-anchor="middle" font-family="Thonburi, sans-serif">รายการ</text>
+  <text x="960" y="1136" font-size="24" fill="#a8acb2" text-anchor="middle" font-family="Thonburi, sans-serif">ตลาด</text>
+</svg>

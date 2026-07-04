@@ -1,0 +1,1066 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "9e876973-bc35-42a3-9f40-5ed153624308",
+  "prevId": "5cc4a954-4c9d-40c5-af3c-ce8ed0bb6262",
+  "tables": {
+    "feeder_look_through_holdings": {
+      "name": "feeder_look_through_holdings",
+      "columns": {
+        "proj_id": {
+          "name": "proj_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "rank": {
+          "name": "rank",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ticker": {
+          "name": "ticker",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "asset_class": {
+          "name": "asset_class",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "isin": {
+          "name": "isin",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "weight_pct": {
+          "name": "weight_pct",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "as_of_date": {
+          "name": "as_of_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "fetched_at": {
+          "name": "fetched_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(CURRENT_TIMESTAMP)"
+        }
+      },
+      "indexes": {
+        "idx_feeder_look_through_proj": {
+          "name": "idx_feeder_look_through_proj",
+          "columns": ["proj_id"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "feeder_look_through_holdings_proj_id_fund_catalog_proj_id_fk": {
+          "name": "feeder_look_through_holdings_proj_id_fund_catalog_proj_id_fk",
+          "tableFrom": "feeder_look_through_holdings",
+          "tableTo": "fund_catalog",
+          "columnsFrom": ["proj_id"],
+          "columnsTo": ["proj_id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "feeder_look_through_holdings_proj_id_rank_pk": {
+          "columns": ["proj_id", "rank"],
+          "name": "feeder_look_through_holdings_proj_id_rank_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "feeder_master_map": {
+      "name": "feeder_master_map",
+      "columns": {
+        "proj_id": {
+          "name": "proj_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "master_isin": {
+          "name": "master_isin",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "master_name": {
+          "name": "master_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "provider": {
+          "name": "provider",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'ishares'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(CURRENT_TIMESTAMP)"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(CURRENT_TIMESTAMP)"
+        }
+      },
+      "indexes": {
+        "idx_feeder_master_map_isin": {
+          "name": "idx_feeder_master_map_isin",
+          "columns": ["master_isin"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "feeder_master_map_proj_id_fund_catalog_proj_id_fk": {
+          "name": "feeder_master_map_proj_id_fund_catalog_proj_id_fk",
+          "tableFrom": "feeder_master_map",
+          "tableTo": "fund_catalog",
+          "columnsFrom": ["proj_id"],
+          "columnsTo": ["proj_id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "fund_asset_allocation": {
+      "name": "fund_asset_allocation",
+      "columns": {
+        "proj_id": {
+          "name": "proj_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "start_date": {
+          "name": "start_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "end_date": {
+          "name": "end_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "prospectus_type": {
+          "name": "prospectus_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "asset_seq": {
+          "name": "asset_seq",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "asset_name": {
+          "name": "asset_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "asset_ratio": {
+          "name": "asset_ratio",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "last_upd_date": {
+          "name": "last_upd_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "idx_fund_asset_alloc_proj": {
+          "name": "idx_fund_asset_alloc_proj",
+          "columns": ["proj_id"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "fund_asset_allocation_proj_id_fund_catalog_proj_id_fk": {
+          "name": "fund_asset_allocation_proj_id_fund_catalog_proj_id_fk",
+          "tableFrom": "fund_asset_allocation",
+          "tableTo": "fund_catalog",
+          "columnsFrom": ["proj_id"],
+          "columnsTo": ["proj_id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "fund_asset_allocation_proj_id_asset_seq_pk": {
+          "columns": ["proj_id", "asset_seq"],
+          "name": "fund_asset_allocation_proj_id_asset_seq_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "fund_catalog": {
+      "name": "fund_catalog",
+      "columns": {
+        "proj_id": {
+          "name": "proj_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "abbr_name": {
+          "name": "abbr_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "thai_name": {
+          "name": "thai_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "english_name": {
+          "name": "english_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "amc_name": {
+          "name": "amc_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "fund_type": {
+          "name": "fund_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "policy_desc": {
+          "name": "policy_desc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "asset_class": {
+          "name": "asset_class",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "policy_desc_th": {
+          "name": "policy_desc_th",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "management_style": {
+          "name": "management_style",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "tax_incentive_type": {
+          "name": "tax_incentive_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "distribution_policy": {
+          "name": "distribution_policy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "invest_region": {
+          "name": "invest_region",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "is_feeder_fund": {
+          "name": "is_feeder_fund",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "feeder_master_fund": {
+          "name": "feeder_master_fund",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "is_fixed_term": {
+          "name": "is_fixed_term",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "init_date": {
+          "name": "init_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "isin_code": {
+          "name": "isin_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "aum": {
+          "name": "aum",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "aum_date": {
+          "name": "aum_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "sec_status": {
+          "name": "sec_status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'active'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(CURRENT_TIMESTAMP)"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(CURRENT_TIMESTAMP)"
+        },
+        "current_ter": {
+          "name": "current_ter",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "idx_fund_catalog_asset_class": {
+          "name": "idx_fund_catalog_asset_class",
+          "columns": ["asset_class"],
+          "isUnique": false
+        },
+        "idx_fund_catalog_status": {
+          "name": "idx_fund_catalog_status",
+          "columns": ["status"],
+          "isUnique": false
+        },
+        "idx_fund_catalog_mgmt_style": {
+          "name": "idx_fund_catalog_mgmt_style",
+          "columns": ["management_style"],
+          "isUnique": false
+        },
+        "idx_fund_catalog_tax": {
+          "name": "idx_fund_catalog_tax",
+          "columns": ["tax_incentive_type"],
+          "isUnique": false
+        },
+        "idx_fund_catalog_abbr_name": {
+          "name": "idx_fund_catalog_abbr_name",
+          "columns": ["abbr_name"],
+          "isUnique": false
+        },
+        "idx_fund_catalog_english_name": {
+          "name": "idx_fund_catalog_english_name",
+          "columns": ["english_name"],
+          "isUnique": false
+        },
+        "idx_fund_catalog_thai_name": {
+          "name": "idx_fund_catalog_thai_name",
+          "columns": ["thai_name"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "fund_fees": {
+      "name": "fund_fees",
+      "columns": {
+        "proj_id": {
+          "name": "proj_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fund_class_name": {
+          "name": "fund_class_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fee_type": {
+          "name": "fee_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fee_type_raw": {
+          "name": "fee_type_raw",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "rate_ceiling_pct": {
+          "name": "rate_ceiling_pct",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "actual_rate_pct": {
+          "name": "actual_rate_pct",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "period_start": {
+          "name": "period_start",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "period_end": {
+          "name": "period_end",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "prospectus_type": {
+          "name": "prospectus_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "last_upd_date": {
+          "name": "last_upd_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "idx_fund_fees_current": {
+          "name": "idx_fund_fees_current",
+          "columns": ["proj_id", "fee_type", "period_end"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "fund_fees_proj_id_fund_catalog_proj_id_fk": {
+          "name": "fund_fees_proj_id_fund_catalog_proj_id_fk",
+          "tableFrom": "fund_fees",
+          "tableTo": "fund_catalog",
+          "columnsFrom": ["proj_id"],
+          "columnsTo": ["proj_id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "fund_fees_proj_id_fund_class_name_fee_type_raw_period_start_pk": {
+          "columns": ["proj_id", "fund_class_name", "fee_type_raw", "period_start"],
+          "name": "fund_fees_proj_id_fund_class_name_fee_type_raw_period_start_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "fund_performance": {
+      "name": "fund_performance",
+      "columns": {
+        "proj_id": {
+          "name": "proj_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fund_class_name": {
+          "name": "fund_class_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "start_date": {
+          "name": "start_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "end_date": {
+          "name": "end_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "prospectus_type": {
+          "name": "prospectus_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "performance_type_desc": {
+          "name": "performance_type_desc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reference_period": {
+          "name": "reference_period",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "performance_value": {
+          "name": "performance_value",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "last_upd_date": {
+          "name": "last_upd_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "idx_fund_performance_proj": {
+          "name": "idx_fund_performance_proj",
+          "columns": ["proj_id"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "fund_performance_proj_id_fund_catalog_proj_id_fk": {
+          "name": "fund_performance_proj_id_fund_catalog_proj_id_fk",
+          "tableFrom": "fund_performance",
+          "tableTo": "fund_catalog",
+          "columnsFrom": ["proj_id"],
+          "columnsTo": ["proj_id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "fund_performance_proj_id_fund_class_name_performance_type_desc_reference_period_pk": {
+          "columns": ["proj_id", "fund_class_name", "performance_type_desc", "reference_period"],
+          "name": "fund_performance_proj_id_fund_class_name_performance_type_desc_reference_period_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "fund_portfolio": {
+      "name": "fund_portfolio",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "proj_id": {
+          "name": "proj_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "period": {
+          "name": "period",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "as_of_date": {
+          "name": "as_of_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "assetliab_id": {
+          "name": "assetliab_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "assetliab_desc": {
+          "name": "assetliab_desc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "issue_code": {
+          "name": "issue_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "isin_code": {
+          "name": "isin_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "issuer": {
+          "name": "issuer",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "assetliab_value": {
+          "name": "assetliab_value",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "percent_nav": {
+          "name": "percent_nav",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "last_upd_date": {
+          "name": "last_upd_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "idx_fund_portfolio_proj": {
+          "name": "idx_fund_portfolio_proj",
+          "columns": ["proj_id"],
+          "isUnique": false
+        },
+        "idx_fund_portfolio_proj_period": {
+          "name": "idx_fund_portfolio_proj_period",
+          "columns": ["proj_id", "period"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "fund_portfolio_proj_id_fund_catalog_proj_id_fk": {
+          "name": "fund_portfolio_proj_id_fund_catalog_proj_id_fk",
+          "tableFrom": "fund_portfolio",
+          "tableTo": "fund_catalog",
+          "columnsFrom": ["proj_id"],
+          "columnsTo": ["proj_id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "fund_portfolio_asset_type": {
+      "name": "fund_portfolio_asset_type",
+      "columns": {
+        "proj_id": {
+          "name": "proj_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "period": {
+          "name": "period",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "assetliab_code": {
+          "name": "assetliab_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "assetliab_desc": {
+          "name": "assetliab_desc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "market_value": {
+          "name": "market_value",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "percent_nav": {
+          "name": "percent_nav",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "idx_fund_portfolio_asset_type_proj": {
+          "name": "idx_fund_portfolio_asset_type_proj",
+          "columns": ["proj_id"],
+          "isUnique": false
+        },
+        "idx_fund_portfolio_asset_type_proj_period": {
+          "name": "idx_fund_portfolio_asset_type_proj_period",
+          "columns": ["proj_id", "period"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "fund_portfolio_asset_type_proj_id_fund_catalog_proj_id_fk": {
+          "name": "fund_portfolio_asset_type_proj_id_fund_catalog_proj_id_fk",
+          "tableFrom": "fund_portfolio_asset_type",
+          "tableTo": "fund_catalog",
+          "columnsFrom": ["proj_id"],
+          "columnsTo": ["proj_id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "fund_portfolio_asset_type_proj_id_period_assetliab_code_pk": {
+          "columns": ["proj_id", "period", "assetliab_code"],
+          "name": "fund_portfolio_asset_type_proj_id_period_assetliab_code_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "fund_quotes": {
+      "name": "fund_quotes",
+      "columns": {
+        "ticker": {
+          "name": "ticker",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nav": {
+          "name": "nav",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "d1_pct": {
+          "name": "d1_pct",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ytd_pct": {
+          "name": "ytd_pct",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "y1_pct": {
+          "name": "y1_pct",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "fund_top_holdings": {
+      "name": "fund_top_holdings",
+      "columns": {
+        "proj_id": {
+          "name": "proj_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "start_date": {
+          "name": "start_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "end_date": {
+          "name": "end_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "prospectus_type": {
+          "name": "prospectus_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "asset_seq": {
+          "name": "asset_seq",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "asset_name": {
+          "name": "asset_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "asset_ratio": {
+          "name": "asset_ratio",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "last_upd_date": {
+          "name": "last_upd_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "idx_fund_top_holdings_proj": {
+          "name": "idx_fund_top_holdings_proj",
+          "columns": ["proj_id"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "fund_top_holdings_proj_id_fund_catalog_proj_id_fk": {
+          "name": "fund_top_holdings_proj_id_fund_catalog_proj_id_fk",
+          "tableFrom": "fund_top_holdings",
+          "tableTo": "fund_catalog",
+          "columnsFrom": ["proj_id"],
+          "columnsTo": ["proj_id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "fund_top_holdings_proj_id_asset_seq_pk": {
+          "columns": ["proj_id", "asset_seq"],
+          "name": "fund_top_holdings_proj_id_asset_seq_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "nav_history": {
+      "name": "nav_history",
+      "columns": {
+        "ticker": {
+          "name": "ticker",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "date": {
+          "name": "date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nav": {
+          "name": "nav",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "idx_nav_history_date": {
+          "name": "idx_nav_history_date",
+          "columns": ["date"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "nav_history_ticker_date_pk": {
+          "columns": ["ticker", "date"],
+          "name": "nav_history_ticker_date_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

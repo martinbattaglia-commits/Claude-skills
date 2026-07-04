@@ -1,0 +1,1 @@
+ALTER TABLE `holdings` ADD `catalog_isin` text;

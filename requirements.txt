@@ -17,7 +17,7 @@ courlan>=1.4.0,<2.0.0             # trafilatura URL helper; explicit pin avoids 
 
 # Report generation (for seo-google PDF/Excel reports)
 matplotlib>=3.10.9,<4.0.0              # No known CVEs
-weasyprint>=68.1,<70.0                # No known CVEs
+weasyprint>=69.0,<70.0                # No known CVEs
 openpyxl>=3.1.5,<4.0.0                # No known CVEs (Excel export)
 
 # Google API dependencies (for seo-google skill)

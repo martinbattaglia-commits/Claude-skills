@@ -14,7 +14,7 @@ jobs:
     name: Python Syntax Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v6
@@ -36,7 +36,7 @@ jobs:
       # limit and the sync_flow dry-run test fails on shared-runner IPs.
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v6
@@ -59,7 +59,7 @@ jobs:
     name: Secret scan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Scan tracked files for leaked credentials
         run: |

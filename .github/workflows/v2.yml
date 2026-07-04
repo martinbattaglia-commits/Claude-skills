@@ -27,7 +27,7 @@ jobs:
     name: Manifest consistency (13 assertions)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v6
@@ -44,7 +44,7 @@ jobs:
     name: SSRF + DNS rebinding suite
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v6
@@ -76,7 +76,7 @@ jobs:
       # 60/hr anonymous rate limit. Identical to ci.yml.
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v6
@@ -95,7 +95,7 @@ jobs:
     name: Secret scan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Scan tracked files for leaked credentials
         run: |
